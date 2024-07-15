@@ -70,7 +70,7 @@
                                         @endphp
                                               @foreach ($products as $value)
                                               @php
-                                                  $data = \App\Models\Vroduct::find($value->product_id);
+                                                  $data = \App\Models\Vproduct::find($value->product_id);
                                               @endphp
 
                                             <tr>
