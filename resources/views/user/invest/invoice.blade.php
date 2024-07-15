@@ -19,8 +19,8 @@
   <body bgcolor="#A0A0A0" vlink="blue" link="blue">
     <div class="main-content">
 
-      <div class="page-content">
-          <div class="container-fluid" style="padding-left:15%">
+      <div class="page-content" style="overflow-x: auto">
+          <div class="container-fluid" style="padding-left:10%">
 
 
     <div
