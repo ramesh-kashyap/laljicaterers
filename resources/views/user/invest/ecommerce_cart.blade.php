@@ -57,7 +57,7 @@
                             </div>
                             <div class="row mt-4">
                                 <div class="col-sm-6">
-                                    <a href="{{route('user.invest')}}" class="btn btn-secondary">
+                                    <a href="{{route('user.vendor_cards')}}" class="btn btn-secondary">
                                         <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
                                 </div> <!-- end col -->
                                

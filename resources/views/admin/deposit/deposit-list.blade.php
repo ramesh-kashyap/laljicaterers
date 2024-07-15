@@ -29,26 +29,33 @@
                                           <thead>
                                             <tr>
                                                 <th>Sr No</th>
-                                                <th>User Id</th>
+                                                <!-- <th>Customer Id</th> -->
                                               
-                                                <th>Name</th>
-                                                <th>Email</th>
+                                                <th>Customer Name</th>
+                                                <th> Customer Email</th>
                                                 <!--<th>Coupon</th>-->
-                                                <th>Mobile Number</th>
+                                                <th> Customer Mobile </th>
                                                 <!-- <th>transaction Id</th> -->
-                                                <th>join Date</th>
+                                                <th>Enquiry Date</th>
+                                                <th>Agent Name</th>
+                                                <th>City</th>
+                                                <th>Event</th>
+                                                <th>Action</th>
                                                 
                                             </tr>
+                                            
                                         </thead>
                                         <tbody>
                                             <?php if(is_array($product_list) || is_object($product_list)){ ?>
 
                                                 <?php $cnt =$product_list->perPage() * ($product_list->currentPage() - 1); ?>
                                                 @foreach($product_list as $value)
+                                        
+                                            
                                                     <tr>
                                                         <td><?= $cnt += 1?></td>
                     
-                                                        <td> {{$value->user_id_fk}}</td>
+                                                        <!-- <td> {{$value->user_id_fk}}</td> -->
                                                       
                                                         <td> {{$value->name}}</td>
                                                         <td> {{$value->email}}</td>
@@ -56,9 +63,13 @@
                                                         <td>  {{$value->phone}}</td>
                                                         <!-- <td>  {{$value->transaction_id}}</td> -->
                                                         <td>  {{$value->created_at}}</td>
+                                                        <td> {{$value->user->name}}</td>
+                                                        <td> {{$value->city}}</td>
+                                                        <td> {{$value->event}}</td>
+                                                        
                                                       
                                                         <td><a href="{{ route('admin.view-invoice', ['id'=> Crypt::encrypt($value->id)]) }}" class="btn btn-primary btn-sm btn-rounded" >
-                                                                View Details
+                                                        Generate Menu
                                                             </a></td>
                                                     
                                                        

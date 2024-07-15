@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-sm-6">
-                                        <a href="{{ route('user.Addagent') }}" class="btn btn-secondary">
+                                        <a href="{{ route('user.categories_menu') }}" class="btn btn-secondary">
                                             <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping
                                         </a>
                                     </div> <!-- end col -->
@@ -98,10 +98,28 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Address:</strong></td>
+                                            <td><strong>city:</strong></td>
                                             <td>
-                                                <input type="text" name="address" class="form-control" value="{{ $address }}" required>
+                                                <input type="text" name="city" class="form-control"
+                                                    value="" required>
                                             </td>
+                                        </tr>
+                                          <tr>
+                                            <td><strong>Event:</strong></td>
+                                            <td>
+                                                <select name="event" class="form-control" required>
+                                                    <option value="bithday">Birthday</option>
+                                                    <option value="marriage">Marriage</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                            <td><strong>Payment Mode:</strong></td>
+                                            <td>
+        <select name="payment_mode" class="form-control" required>
+            <option value="cash" {{ $payment_mode == 'cash' ? 'selected' : '' }}>Cash</option>
+            <option value="online" {{ $payment_mode == 'online' ? 'selected' : '' }}>Online</option>
+        </select>
+    </td>
                                         </tr>
                                         <tr>
                                             <td><strong>Total Quantity:</strong></td>

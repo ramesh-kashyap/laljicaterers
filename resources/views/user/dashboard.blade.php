@@ -71,142 +71,6 @@
                                 </div>
                               
                             </div>
-                            <div class="col-xl-8">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="flex-grow-1">
-                                                        <p class="text-muted fw-medium">Withdrawable Balance</p>
-                                                        <h4 class="mb-0">{{ currency() }} {{ number_format(Auth::user()->available_balance(), 2) }}</h4>
-                                                    </div>
-
-                                                    <div class="flex-shrink-0 align-self-center">
-                                                        <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
-                                                            <span class="avatar-title">
-                                                                <i class="bx bx-copy-alt font-size-24"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="flex-grow-1">
-                                                        <p class="text-muted fw-medium">Total Buying</p>
-                                                        <h4 class="mb-0">{{ currency() }}
-                                                            {{ number_format(Auth::user()->investment->sum('amount'), 2) }}</h4>
-                                                    </div>
-
-                                                    <div class="flex-shrink-0 align-self-center ">
-                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
-                                                            <span class="avatar-title rounded-circle bg-primary">
-                                                                <i class="bx bx-archive-in font-size-24"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="flex-grow-1">
-                                                        <p class="text-muted fw-medium">Pool Profit</p>
-                                                        <h4 class="mb-0">{{ currency() }} {{ number_format(Auth::user()->pool_bonus->sum('comm'), 2) }} </h4>
-                                                    </div>
-
-                                                    <div class="flex-shrink-0 align-self-center">
-                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
-                                                            <span class="avatar-title rounded-circle bg-primary">
-                                                                <i class="bx bx-purchase-tag-alt font-size-24"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="flex-grow-1">
-                                                        <p class="text-muted fw-medium">My Direct</p>
-                                                        <h4 class="mb-0">{{ $user_direct }} </h4>
-                                                    </div>
-
-                                                    <div class="flex-shrink-0 align-self-center">
-                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
-                                                            <span class="avatar-title rounded-circle bg-primary">
-                                                                <i class="fa fa-user font-size-24"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="flex-grow-1">
-                                                        <p class="text-muted fw-medium">Level Team</p>
-                                                        <h4 class="mb-0">{{ $total_team }} </h4>
-                                                    </div>
-
-                                                    <div class="flex-shrink-0 align-self-center">
-                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
-                                                            <span class="avatar-title rounded-circle bg-primary">
-                                                                <i class="fa fa-users font-size-24"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="flex-grow-1">
-                                                        <p class="text-muted fw-medium">Total Withdrawal</p>
-                                                        <h4 class="mb-0">{{ currency() }} {{ number_format(Auth::user()->withdraw(), 2) }} </h4>
-                                                    </div>
-
-                                                    <div class="flex-shrink-0 align-self-center">
-                                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
-                                                            <span class="avatar-title rounded-circle bg-primary">
-                                                                <i class="bx bx-copy-alt font-size-24"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
-                                <!-- end row -->
-
-                               
-                            </div>
                         </div>
                         <!-- end row -->
 
@@ -224,8 +88,8 @@
                                                         <th class="align-middle">Order ID</th>
                                                         <th class="align-middle">Billing Name</th>
                                                         <th class="align-middle">Date</th>
-                                                        <th class="align-middle">Total</th>
-                                                        <th class="align-middle">Payment Status</th>
+                                                    
+                                                       
                                                         <th class="align-middle">Payment Method</th>
                                                         <th class="align-middle">View Details</th>
                                                     </tr>
@@ -237,16 +101,12 @@
                                         <tr>
                                            
                                             <td><a href="javascript: void(0);" class="text-body fw-bold">#{{$value->plan}}</a> </td>
-                                            <td>{{$value->user->name}}</td>
+                                            <td>{{$value->user->email}}</td>
                                             <td>
                                                 {{date("D, d M Y", strtotime($value->sdate))}}
                                             </td>
-                                            <td>
-                                            &#8377; {{$value->amount}}
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-soft-success font-size-11">Paid</span>
-                                            </td>
+                                           
+                                           
                                             <td>
                                                 CASH
                                             </td>

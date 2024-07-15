@@ -19,17 +19,18 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title mb-4">Filter</h4>
-                            <div>
-                                <h5 class="font-size-14 mb-3">Category</h5>
-                                <ul class="list-unstyled product-list">
-                                    @foreach($categories as $category)
-                                    <li><a href="javascript:void(0);" class="category-link" data-category-id="{{ $category->id }}"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">{{ $category->categoryname }}</span></a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="card-body">
+    <h4 class="card-title mb-4">Filter</h4>
+    <div>
+        <h5 class="font-size-14 mb-3">Filter By</h5>
+        <ul class="list-unstyled product-list">
+            <li><a href="javascript:void(0);" class="filter-link" data-filter-type="all"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">All Products</span></a></li>
+            <li><a href="javascript:void(0);" class="filter-link" data-filter-type="latest"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">Latest Products</span></a></li>
+            <li><a href="javascript:void(0);" class="filter-link" data-filter-type="oldest"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">Oldest Products</span></a></li>
+        </ul>
+    </div>
+</div>
+
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -56,8 +57,7 @@
                                 <div class="card-body">
                                     <div class="product-img position-relative">
                                         <div class="avatar-sm product-ribbon"></div>
-                                                                               <img src="{{ asset($product->image) }}" alt="" class="img-fluid mx-auto d-block" style="width:160px;height:160px;">
-
+                                        <img src="{{ asset($product->image) }}" alt="" class="img-fluid mx-auto d-block" style="width:160px;height:160px;">
                                     </div>
                                     <div class="mt-4 text-center">
                                         <h5 class="mb-3 text-truncate"><a href="javascript:void(0);" class="text-dark">{{ $product->productName }}</a></h5>
@@ -79,30 +79,14 @@
 </div>
 
 <script>
-    $(document).ready(function() {
+   $(document).ready(function() {
     var cartItems = []; // Array to store product IDs
 
-    $('.category-link').click(function() {
-        var categoryId = $(this).data('category-id');
-        fetchProducts([categoryId]);
-    });
-
-    // Delegate the click event for dynamically added "Add to cart" buttons
-    $('#product-list').on('click', '.btn-primary', function() {
-        var productId = $(this).data('product-id');
-        var button = $(this);
-
-        if (cartItems.indexOf(productId) === -1) {
-            addToCart(productId, button);
-        } else {
-            removeFromCart(productId, button);
-        }
-    });
 
     $('#go-to-cart').click(function() {
         // Create a form and submit it to the user.agentActivation route
         var form = $('<form>', {
-            action: '{{ route("user.agentActivation") }}',
+            action: '{{ route("user.ecommerce_cart") }}',
             method: 'POST'
         });
 
@@ -127,53 +111,68 @@
         form.submit();
     });
 
-    function fetchProducts(selectedCategories) {
-        if (selectedCategories.length > 0) {
-            $.ajax({
-                url: '{{ route("add.fatch") }}', // Update with your route
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    categories: selectedCategories
-                },
-                success: function(response) {
-                    $('#product-list').empty(); // Clear previous products
-                    $.each(response.products, function(index, product) {
-                        // Append each product with its image and data-product-id attribute
-                        var productHtml = `
-                            <div class="col-xl-4 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="product-img position-relative">
-                                            <div class="avatar-sm product-ribbon"></div>
-                                            <img src="` + product.image + `" alt="" class="img-fluid mx-auto d-block" style="width:160px;height:160px;">
-                                        </div>
-                                        <div class="mt-4 text-center">
-                                            <h5 class="mb-3 text-truncate"><a href="javascript: void(0);" class="text-dark">` + product.productName + `</a></h5>
-                                            <div class="text-center">
-                                                <button type="button" class="btn btn-primary waves-effect waves-light mt-2 me-1" data-product-id="` + product.id + `">
-                                                    <i class="bx bx-cart me-2"></i> Add to cart
-                                                </button>
-                                            </div>
+    // Function to fetch products based on filter type
+    function fetchProducts(filterType) {
+        $.ajax({
+            url: '{{ route("product.fatch") }}', // Update with your route
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                filter: filterType
+            },
+            success: function(response) {
+                $('#product-list').empty(); // Clear previous products
+                $.each(response.products, function(index, product) {
+                    // Append each product with its image and data-product-id attribute
+                    var productHtml = `
+                        <div class="col-xl-4 col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="product-img position-relative">
+                                        <div class="avatar-sm product-ribbon"></div>
+                                        <img src="${product.image}" alt="" class="img-fluid mx-auto d-block" style="width:160px;height:160px;">
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        <h5 class="mb-3 text-truncate"><a href="javascript: void(0);" class="text-dark">${product.productName}</a></h5>
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-primary waves-effect waves-light mt-2 me-1" data-product-id="${product.id}">
+                                                <i class="bx bx-cart me-2"></i> Add to cart
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>`;
-                        $('#product-list').append(productHtml);
-                    });
-                },
-                error: function(xhr) {
-                    console.log('Error:', xhr);
-                }
-            });
-        } else {
-            // Hide the product list if no categories are selected
-            $('#product-list').empty(); // Clear previous products
-        }
+                            </div>
+                        </div>`;
+                    $('#product-list').append(productHtml);
+                });
+            },
+            error: function(xhr) {
+                console.log('Error:', xhr);
+            }
+        });
     }
 
+    // Event listener for filter links
+    $('.filter-link').click(function(e) {
+        e.preventDefault();
+        var filterType = $(this).data('filter-type');
+        fetchProducts(filterType);
+    });
+
+    // Delegate the click event for dynamically added "Add to cart" buttons
+    $('#product-list').on('click', '.btn-primary', function() {
+        var productId = $(this).data('product-id');
+        var button = $(this);
+
+        if (cartItems.indexOf(productId) === -1) {
+            addToCart(productId, button);
+        } else {
+            removeFromCart(productId, button);
+        }
+    });
+
+    // Function to add product to cart
     function addToCart(productId, button) {
-        // Check if the product ID already exists in cartItems
         if (cartItems.indexOf(productId) === -1) {
             cartItems.push(productId); // Add product ID to the array if not already present
             var cartCountElement = $('#cart-count');
@@ -183,6 +182,7 @@
         }
     }
 
+    // Function to remove product from cart
     function removeFromCart(productId, button) {
         var index = cartItems.indexOf(productId);
         if (index !== -1) {
@@ -193,6 +193,9 @@
             button.text('Add to cart'); // Change button text back to "Add to cart"
         }
     }
+
+    // Fetch all products by default when the page loads
+    fetchProducts('all');
 });
 
 </script>

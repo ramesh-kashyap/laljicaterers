@@ -14,7 +14,7 @@ use App\Models\VendorBilling;
 use App\Models\Investment;
 use App\Models\GeneralSetting;
 use App\Models\Vendor_product;
-use App\Models\Categorie;
+use App\Models\Category;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Log;
@@ -970,7 +970,7 @@ class ProductController extends Controller
             $limit = $request->limit ? $request->limit : 100000000000;
             $status = $request->status ? $request->status : null;
             $search = $request->search ? $request->search : null;
-            $notes = Categorie::orderBy('id', 'DESC');
+            $notes = Category::orderBy('id', 'DESC');
     
             if($search <> null && $request->reset!="Reset")
             {

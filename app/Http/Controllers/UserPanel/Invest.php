@@ -80,7 +80,7 @@ class Invest extends Controller
       try{
             $validation =  Validator::make($request->all(), [
                 'products' => 'required',
-                'user_id' => 'required|exists:users,username',
+                // 'user_id' => 'required|exists:users,username',
                 
             ]);
     
@@ -441,12 +441,52 @@ class Invest extends Controller
       $categoryname = Category::orderBy('id','DESC')->get();
       $this->data['categories'] = $categoryname;
 
+      $defaultCategoryId = $categoryname->first()->id;
+      $defaultProducts = Product::where('category_id', $defaultCategoryId)->get(['id', 'productName', 'image']);
+      $this->data['defaultProducts'] = $defaultProducts;
+
     $this->data['page'] = 'user.invest.categories_menu';
     return $this->dashboard_layout();
 
    }     
+   public function addfatch(Request $request)
+{
+  $categories = $request->input('categories');
+    
+  // Fetch products based on selected categories
+  $products = Product::whereIn('category_id', $categories)->get(['id', 'productName', 'image']); // assuming you have an 'image_url' field
+
+  return response()->json(['products' => $products]);
+}
 
 
 
+public function vendor_cards()
+{
+    $categoryname = Category::orderBy('id', 'DESC')->get();
+    $this->data['categories'] = $categoryname;
+
+    // Fetch all products by default
+    $defaultProducts = Product::all(['id', 'productName', 'image']);
+    $this->data['defaultProducts'] = $defaultProducts;
+
+    $this->data['page'] = 'user.invest.vendor_products';
+    return $this->dashboard_layout();
+}
+public function fetchProduct(Request $request)
+{
+    $filter = $request->input('filter');
+    
+    // Fetch products based on filter type
+    if ($filter === 'latest') {
+        $products = Product::orderBy('created_at', 'desc')->get(['id', 'productName', 'image']); // Fetch latest products
+    } elseif ($filter === 'oldest') {
+        $products = Product::orderBy('created_at', 'asc')->get(['id', 'productName', 'image']); // Fetch oldest products
+    } else {
+        $products = Product::all(['id', 'productName', 'image']); // Fetch all products by default
+    }
+
+    return response()->json(['products' => $products]);
+}
 
 }

@@ -271,26 +271,26 @@ display: none;
                         </ul>
                     </li>
 
-                        <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-045-heart"></i>
-							<span class="nav-text">Admin Billings</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('admin.admin-product') }}">Billings</a></li>
-                            <li><a href="{{route('admin.adminProduct')}}">Billings Report</a></li>
+      <!--                  <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">-->
+						<!--	<i class="flaticon-045-heart"></i>-->
+						<!--	<span class="nav-text">Admin Billings</span>-->
+						<!--</a>-->
+      <!--                  <ul aria-expanded="false">-->
+      <!--                      <li><a href="{{ route('admin.admin-product') }}">Billings</a></li>-->
+      <!--                      <li><a href="{{route('admin.adminProduct')}}">Billings Report</a></li>-->
                           
-                        </ul>
-                    </li>
+      <!--                  </ul>-->
+      <!--              </li>-->
 
 
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                         <i class="flaticon-045-heart"></i>
-                        <span class="nav-text">Vender Member</span>
+                        <span class="nav-text">Vender Request</span>
                     </a>
                     <ul aria-expanded="false">
                         <li><a href="{{ route('admin.product-request') }}">Vender Request</a></li>
-                        <li><a href="{{route('admin.sellerProduct')}}">Vender Product</a></li>
-                        <li><a href="{{route('admin.billing-product')}}">Billing Manual</a></li>
+                        <li><a href="{{route('admin.sellerProduct')}}">Vender Report</a></li>
+                        <!--<li><a href="{{route('admin.billing-product')}}">Billing Manual</a></li>-->
                         <!-- <li><a href="{{route('admin.agent_report')}}">Agent Report</a></li> -->
                         
                       

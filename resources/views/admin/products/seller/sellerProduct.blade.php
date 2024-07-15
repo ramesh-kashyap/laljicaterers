@@ -6,8 +6,8 @@
         
                 <div class="row page-titles">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Sellers </a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Seller Products</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Vender </a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Vender Products</a></li>
                     </ol>
                 </div>
                 <!-- row -->
@@ -17,7 +17,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Seller Products</h4>
+                                <h4 class="card-title">Vender Products</h4>
                             </div>
                             <div class="card-body">
         
@@ -40,6 +40,7 @@
                                                 <th>Payment Mode</th>
                                 
                                                 <th>Request Date</th>
+                                                <th>Action</th>
                                                
                                                 
         
@@ -59,22 +60,23 @@
                                                     <td> {{ $value->user_id_fk }}</td>
         
         
-                                                    <td> {{ $value->amount }}</td>
+                                                    <td>  {{ currency() }}{{ $value->amount }}</td>
                                                     <td> 
                                                         {{ $value->discount}}</td>
                                                     <td> 
                                                         {{ $value->status}}</td>
-                                                    <td> {{ currency() }}
+                                                    <td>
                                                         {{ $value->payment_mode}}</td>
                                                   
         
         
                                                     <td>{{ date('D, d M Y h:i:s a', strtotime($value->created_at)) }} </td>
+                                                   
         
                                                   
         
                                                     <td><a href="{{ route('admin.vendor_invoice_b', ['id'=> Crypt::encrypt($value->id)]) }}" class="btn btn-primary btn-sm btn-rounded" >
-                                                                View Details
+                                                                Generate Menu
                                                             </a></td>
         
                                                 </tr>

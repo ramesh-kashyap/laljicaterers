@@ -198,17 +198,7 @@ span.badge.badge-success {
                           </li>
 
 
-                          <li>
-                                <a href="{{route('user.categories_menu')}}" class="has-arrow waves-effect">
-                                    <i class="bx bx-envelope"></i>
-                                    <span key="t-email">Category Menu</span>
-                                </a>
-                                <!-- <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{route('user.GenerateTicket')}}" key="t-inbox">Support Ticket</a></li>
-                                    <li><a href="{{route('user.SupportMessage')}}" key="t-read-email">Inbox</a></li>
-                                    
-                                </ul> -->
-                            </li>
+                        
                            
                             <li class="menu-title" key="t-apps">Apps</li>
 
@@ -241,9 +231,20 @@ span.badge.badge-success {
                                 </ul>
                             </li>
                        
+
+
+                            <li>
+                                <a href="{{route('user.vendor_cards')}}" class="has-arrow waves-effect">
+                                    <i class="bx bx-store"></i>
+                                    <span key="t-ecommerce"> Menu</span>
+                                </a>
+                  
+                            </li>
                                 
 
-                        
+                            
+
+                            
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="bx bx-store"></i>
@@ -264,14 +265,22 @@ span.badge.badge-success {
 
                             @if(Auth::user()->role=="Agent")
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="bx bx-store"></i>
-                                    <span key="t-ecommerce">Generate Menu</span>
+                                <a href="{{route('user.categories_menu')}}" class="waves-effect">
+                                    <i class="bx bx-envelope"></i>
+                                    <span key="t-email"> Menu</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="/user/addagent" key="t-products">Generate Customer Menu</a></li> 
-                                    <li><a href="{{route('user.DepositHistory')}}" key="t-add-product">Customer Reports</a></li>
-                                </ul>
+                                <!-- <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{route('user.GenerateTicket')}}" key="t-inbox">Support Ticket</a></li>
+                                    <li><a href="{{route('user.SupportMessage')}}" key="t-read-email">Inbox</a></li>
+                                    
+                                </ul> -->
+                            </li>
+                            <li>
+                                <a href="{{route('user.DepositHistory')}}" class="waves-effect">
+                                    <i class="bx bx-store"></i>
+                                    <span key="t-ecommerce">Customer Reports</span>
+                                </a>
+                             
                             </li>
                             @endif
 
@@ -345,5 +354,3 @@ span.badge.badge-success {
                 </div>
             </div>
             <!-- Left Sidebar End -->
-
-            
