@@ -29,23 +29,43 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
-                                    <div class="card-body">
-                                        <div class="invoice-title">
-                                            <h4 class="float-end font-size-16">Order  #{{($investment)?$investment->plan:0}}</h4>
-                                             <div class="mb-4">
-                                                <img src="{{asset('')}}main/images/logo.png" alt="logo" height="80"/>
+                                    <div class="card-body" style="
+    border: black 1px dotted;
+">
+                                        <div class="invoice-title" style="
+    background: #f1b44c;
+">
+                                            <center>
+                                             <div class="mb-4" style="
+    background: #f1b44c;
+">
+                                                <img src="http://127.0.0.1:8000/main/images/logo.png" alt="logo" height="80">
                                             </div> 
+                                            </center>
+                                            <center>
+
+                                           <h1 style="
+    font-size: xxx-large;
+    color: white;
+    /* text-decoration: wavy; */
+    /* font-variant: simplified; */
+    /* font-size: -webkit-xxx-large; */
+">
+                                          <b>  MENU</b>
+                                           </h1>
+                                        </center>
+
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <address>
                                                     <strong>Customer's Detail:</strong><br>
-                                                    {{$investment->user->email}}<br>
-                                                    {{$investment->user->phone}}<br>
+                                                    morsapprofitzone@gmail.com<br>
+                                                    9812340321<br>
                                                     <strong>Billed To:</strong><br>
-                                                    {{$investment->user->name}}<br>
-                                                    {{$investment->user->address}}
+                                                    Ramesh<br>
+                                                    Ram Nagar Panipat
                                                 </address>
                                             </div>
                                             <div class="col-sm-6 text-sm-end">
@@ -53,9 +73,9 @@
                                                     <strong>Shipped To:</strong>
 
                                                     <br>
-                                                    {{$admin->name}}<br>
-                                                    {{$admin->address}}<br>
-                                                    {{$admin->phone}}<br>
+                                                    Ramesh<br>
+                                                    Sec 13-17,Panipat<br>
+                                                    9876543210<br>
                                                   
                                                 </address>
                                             </div>
@@ -65,13 +85,13 @@
                                                 <address>
                                                     <strong>Payment Method:</strong><br>
                                                     Cash<br>
-                                                    {{$investment->user->email}}
+                                                    morsapprofitzone@gmail.com
                                                 </address>
                                             </div>
                                             <div class="col-sm-6 mt-3 text-sm-end">
                                                 <address>
                                                     <strong>Order Date:</strong><br>
-                                                    {{date("D, d M Y", strtotime($investment->sdate))}}<br><br>
+                                                    Fri, 05 Jul 2024<br><br>
                                                 </address>
                                             </div>
                                         </div>
@@ -93,39 +113,40 @@
                                                 </thead>
                                                 <tbody>
 
-                                                    <?php $cnt = 0; ?>
-                                                @foreach ($products as $value)
-                                                @php
-                // Fetch the related Vproduct using the product_id
-                $vproduct = \App\Models\Vproduct::find($value->product_id);
-            @endphp
-
+                                                                                                                                                    
                                                 <tr>
-                                                    <td><?= $cnt += 1?></td>
-                                                    <td>{{ $vproduct ? $vproduct->productName : 'N/A' }}</td>
-                                                    <td>{{$value->quantity}} </td>
-                                                    <td class="text-end">&#8377; {{$value->productPrice}}</td>
+                                                    <td>1</td>
+                                                    <td>Cottage Cheese Feta Cannelloni</td>
+                                                    <td>1 </td>
+                                                    <td class="text-end">₹ 444</td>
                                                 </tr>
                                                     
-                                                @endforeach
-
+                                                                                                
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Classic Swiss Fondue</td>
+                                                    <td>1 </td>
+                                                    <td class="text-end">₹ 323</td>
+                                                </tr>
+                                                    
+                                                
                                                    
                                                   
                                                     <tr>
                                                         <td colspan="3" class="text-end">Sub Total</td>
-                                                        <td class="text-end">&#8377; {{$investment->grandTotal}}</td>
+                                                        <td class="text-end">₹ 767</td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="3" class="border-0 text-end">
                                                             <strong>Discount</strong></td>
-                                                        <td class="border-0 text-end">&#8377; {{$investment->discount}}</td>
+                                                        <td class="border-0 text-end">₹ 767</td>
                                                     </tr>
 
                                                  
                                                     <tr>
                                                         <td colspan="3" class="border-0 text-end">
                                                             <strong>Total</strong></td>
-                                                        <td class="border-0 text-end"><h4 class="m-0">&#8377; {{$investment->amount}}</h4></td>
+                                                        <td class="border-0 text-end"><h4 class="m-0">₹ 0</h4></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -133,14 +154,13 @@
                                         <div class="d-print-none">
                                             <div class="float-end">
                                                 <a href="javascript:window.print()" class="btn btn-success waves-effect waves-light me-1"><i class="fa fa-print"></i></a>
-                                                <a href="{{route('user.DepositHistory')}}" class="btn btn-primary w-md waves-effect waves-light"><i class="fa fa-arrow-left"></i>Back</a>
+                                                <a href="http://127.0.0.1:8000/user/DepositHistory" class="btn btn-primary w-md waves-effect waves-light"><i class="fa fa-arrow-left"></i>Back</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- end row -->
+                        </div>                        <!-- end row -->
 
                     </div> <!-- container-fluid -->
                 </div>
