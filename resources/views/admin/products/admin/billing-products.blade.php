@@ -25,18 +25,10 @@
                                         <div class="row">
                                             <div class="mb-3 col-md-12">
                                                 <label class="form-label">Admin ID</label>
-                                                <input class="form-control" id="inputEmail3" readonly value="{{Auth::guard('admin')->user()->username}}" data-response="sponsor_res" placeholder="Admin ID" type="text" name="username">
-                                                <span id="sponsor_res"></span>
-                                            </div>                                       
-                                            <div class="mb-3 col-md-12">
-                                                <label class="form-label">Product</label>
+                                                <input class="form-control" id="inputEmail3" readonly value="{{ $product->role }}"  placeholder="" type="text" name="role">
                                               
-                                                <select name="product" id="" class="form-control" required>
-                                                     @foreach ($product as $value)
-                                                         <option value="{{$value->id}}">{{$value->productName}}</option>
-                                                     @endforeach
-                                                </select>
-                                            </div>
+                                            </div>                                       
+                                           
                                          
                                         </div>
                                         <button type="submit" class="btn btn-primary">Confirm</button>
