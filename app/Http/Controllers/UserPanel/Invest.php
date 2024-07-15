@@ -466,27 +466,32 @@ public function vendor_cards()
     $categoryname = Category::orderBy('id', 'DESC')->get();
     $this->data['categories'] = $categoryname;
 
-    // Fetch all products by default
-    $defaultProducts = Product::all(['id', 'productName', 'image']);
+    // Fetch products with pagination
+    $defaultProducts = Product::paginate(6);
     $this->data['defaultProducts'] = $defaultProducts;
 
     $this->data['page'] = 'user.invest.vendor_products';
     return $this->dashboard_layout();
 }
+
 public function fetchProduct(Request $request)
 {
     $filter = $request->input('filter');
-    
-    // Fetch products based on filter type
+
+    // Fetch products based on filter type with pagination
     if ($filter === 'latest') {
-        $products = Product::orderBy('created_at', 'desc')->get(['id', 'productName', 'image']); // Fetch latest products
+        $products = Product::orderBy('created_at', 'desc')->paginate(6); // Fetch latest products with pagination
     } elseif ($filter === 'oldest') {
-        $products = Product::orderBy('created_at', 'asc')->get(['id', 'productName', 'image']); // Fetch oldest products
+        $products = Product::orderBy('created_at', 'asc')->paginate(6); // Fetch oldest products with pagination
     } else {
-        $products = Product::all(['id', 'productName', 'image']); // Fetch all products by default
+        $products = Product::paginate(6); // Fetch all products with pagination
     }
 
-    return response()->json(['products' => $products]);
+    // Return products with pagination links
+    return response()->json([
+        'products' => $products->items(),
+        'pagination' => (string) $products->links()
+    ]);
 }
 
 }

@@ -19,18 +19,17 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="card">
-                    <div class="card-body">
-    <h4 class="card-title mb-4">Filter</h4>
-    <div>
-        <h5 class="font-size-14 mb-3">Filter By</h5>
-        <ul class="list-unstyled product-list">
-            <li><a href="javascript:void(0);" class="filter-link" data-filter-type="all"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">All Products</span></a></li>
-            <li><a href="javascript:void(0);" class="filter-link" data-filter-type="latest"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">Latest Products</span></a></li>
-            <li><a href="javascript:void(0);" class="filter-link" data-filter-type="oldest"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">Oldest Products</span></a></li>
-        </ul>
-    </div>
-</div>
-
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Filter</h4>
+                            <div>
+                                <h5 class="font-size-14 mb-3">Filter By</h5>
+                                <ul class="list-unstyled product-list">
+                                    <li><a href="javascript:void(0);" class="filter-link" data-filter-type="all"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">All Products</span></a></li>
+                                    <li><a href="javascript:void(0);" class="filter-link" data-filter-type="latest"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">Latest Products</span></a></li>
+                                    <li><a href="javascript:void(0);" class="filter-link" data-filter-type="oldest"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">Oldest Products</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -72,6 +71,10 @@
                         </div>
                         @endforeach
                     </div>
+                    <!-- Pagination Links -->
+                    <div class="mt-4">
+                        {{ $defaultProducts->links() }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,9 +82,8 @@
 </div>
 
 <script>
-   $(document).ready(function() {
+$(document).ready(function() {
     var cartItems = []; // Array to store product IDs
-
 
     $('#go-to-cart').click(function() {
         // Create a form and submit it to the user.agentActivation route
@@ -122,8 +124,9 @@
             },
             success: function(response) {
                 $('#product-list').empty(); // Clear previous products
+
+                // Iterate through each product and append it to the product list
                 $.each(response.products, function(index, product) {
-                    // Append each product with its image and data-product-id attribute
                     var productHtml = `
                         <div class="col-xl-4 col-sm-6">
                             <div class="card">
@@ -133,7 +136,7 @@
                                         <img src="${product.image}" alt="" class="img-fluid mx-auto d-block" style="width:160px;height:160px;">
                                     </div>
                                     <div class="mt-4 text-center">
-                                        <h5 class="mb-3 text-truncate"><a href="javascript: void(0);" class="text-dark">${product.productName}</a></h5>
+                                        <h5 class="mb-3 text-truncate"><a href="javascript:void(0);" class="text-dark">${product.productName}</a></h5>
                                         <div class="text-center">
                                             <button type="button" class="btn btn-primary waves-effect waves-light mt-2 me-1" data-product-id="${product.id}">
                                                 <i class="bx bx-cart me-2"></i> Add to cart
@@ -145,6 +148,9 @@
                         </div>`;
                     $('#product-list').append(productHtml);
                 });
+
+                // Update pagination links
+                $('#pagination-links').html(response.pagination);
             },
             error: function(xhr) {
                 console.log('Error:', xhr);
@@ -178,7 +184,7 @@
             var cartCountElement = $('#cart-count');
             var currentCount = parseInt(cartCountElement.text());
             cartCountElement.text(currentCount + 1);
-            button.text('Remove'); // Change button text to "Remove"
+            button.text('Remove'); // Change button text to 'Remove'
         }
     }
 
@@ -190,20 +196,8 @@
             var cartCountElement = $('#cart-count');
             var currentCount = parseInt(cartCountElement.text());
             cartCountElement.text(currentCount - 1);
-            button.text('Add to cart'); // Change button text back to "Add to cart"
+            button.html('<i class="bx bx-cart me-2"></i> Add to cart'); // Change button text to 'Add to cart'
         }
     }
-
-    // Fetch all products by default when the page loads
-    fetchProducts('all');
 });
-
 </script>
-
-<style>
-    .cart-item-image {
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        padding: 5px;
-    }
-</style>
