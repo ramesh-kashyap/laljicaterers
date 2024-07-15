@@ -400,7 +400,7 @@ class UserController extends Controller
                 'name' => 'required',
                 'phone' => 'required',
                 'email' => 'required',
-                // 'role' => 'required',
+                'role' => 'required',
                 'id' => 'required',
             ]);
     
@@ -417,7 +417,7 @@ class UserController extends Controller
                     'name' => $request->name,
                     'phone' => $request->phone,
                     'email' => $request->email,
-                    // 'role' => $request->role,
+                    'role' => $request->role,
                 ];
     
     
@@ -466,7 +466,7 @@ class UserController extends Controller
                'name' => 'required',
                'phone' => 'required',
                'email' => 'required',
-              //  'role' => 'required',
+               'role' => 'required',
                'id' => 'required',
            ]);
    
@@ -483,7 +483,7 @@ class UserController extends Controller
                    'name' => $request->name,
                    'phone' => $request->phone,
                    'email' => $request->email,
-                  //  'role' => $request->role,
+                   'role' => $request->role,
                ];
    
    

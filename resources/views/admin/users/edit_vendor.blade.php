@@ -41,10 +41,13 @@
                                                 <label class="form-label">Mobile Number</label>
                                                 <input class="form-control" id="inputEmail3" placeholder="Mobile Number" value="{{$product->phone}}" type="text" name="phone">
                                             </div>
-                                             <!-- <div class="mb-3 col-md-12">
+                                             <div class="mb-3 col-md-12">
                                                 <label class="form-label">Member</label>
-                                                <input class="form-control" id="inputEmail3" placeholder="Member" value="{{$product->role}}" type="" name="role">
-                                            </div> -->
+                                                <select class="form-control" id="inputEmail3" placeholder="Member" value="{{$product->role}}" type="" name="role">
+                                                    <option value="Agent"> Agent</option>
+                                                    <option value="Vendor"> Vendor</option>
+                                                </select>
+                                            </div>
 
 
                                                        
