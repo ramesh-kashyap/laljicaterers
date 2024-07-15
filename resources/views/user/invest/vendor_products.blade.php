@@ -73,7 +73,11 @@
                     </div>
                     <!-- Pagination Links -->
                     <div class="mt-4">
-                        {{ $defaultProducts->links() }}
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                {{ $defaultProducts->links() }}
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -201,3 +205,36 @@ $(document).ready(function() {
     }
 });
 </script>
+
+<style>
+/* Custom CSS for responsive pagination */
+@media (max-width: 576px) {
+    .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pagination .page-item {
+        flex: 1 0 33%;
+        max-width: 33%;
+        margin-bottom: 10px;
+    }
+
+    .pagination .page-link {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pagination .page-link {
+        padding: 8px;
+    }
+}
+
+@media (min-width: 769px) {
+    .pagination .page-link {
+        padding: 10px;
+    }
+}
+</style>
