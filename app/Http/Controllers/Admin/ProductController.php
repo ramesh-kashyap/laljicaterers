@@ -51,7 +51,8 @@ class ProductController extends Controller
     {
 
           \DB::statement("SET SQL_MODE=''");
-         $product = Admin_product::where('admin_id',Auth::guard('admin')->user()->id)->where('activeStatus',1)->orderBy('id','DESC')->groupBy('product_id')->get();
+         $product = Admin_product::where('admin_id',Auth::guard('admin')->user()->
+         id)->where('activeStatus',1)->orderBy('id','DESC')->groupBy('product_id')->get();
          $this->data['product'] = $product;
     
        $this->data['page'] = 'admin.products.seller.billing-products';
@@ -63,7 +64,8 @@ class ProductController extends Controller
     public function admin_product()
     {
 
-        $product = Product::orderBy('id','DESC')->get();
+        $product = User::orderBy('id','DESC')->first();
+       
          $this->data['product'] = $product;
     
        $this->data['page'] = 'admin.products.admin.billing-products';
@@ -648,41 +650,22 @@ class ProductController extends Controller
 
 
    public function billingToAdmin(Request $request)
-    {
+   {
+   // Validate the request
+   $request->validate([
+    'role' => 'required|',
+]);
 
-    try{
-        $validation =  Validator::make($request->all(), [
-            'product' => 'required',
-            'username' => 'required',
-        ]);
+// Get the authenticated user
+$user = Auth::user();
 
+// Update the role
+$user->role = $request->input('role');
+$user->save();
 
-        if($validation->fails()) {
-            Log::info($validation->getMessageBag()->first());
+return redirect()->back()->with('status', 'Role updated successfully!');
+}
 
-            return Redirect::back()->withErrors($validation->getMessageBag()->first())->withInput();
-        }
-
-      
-        $product = Product::where('id',$request->product)->first();
-        $this->data['product'] =  $product;
-        $this->data['username'] =  Auth::guard('admin')->user()->username;
-        $this->data['page'] = 'admin.products.admin.confirm_product_admin';
-        return $this->admin_dashboard();
-
-    
-        }
-       catch(\Exception $e){
-        Log::info('error here');
-        Log::info($e->getMessage());
-        print_r($e->getMessage());
-        die("hi");
-        return  Redirect::back()->withErrors('error', $e->getMessage())->withInput();
-        }
-
-
-
-        }
 
 
 

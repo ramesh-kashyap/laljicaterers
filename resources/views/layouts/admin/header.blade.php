@@ -271,16 +271,16 @@ display: none;
                         </ul>
                     </li>
 
-      <!--                  <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">-->
-						<!--	<i class="flaticon-045-heart"></i>-->
-						<!--	<span class="nav-text">Admin Billings</span>-->
-						<!--</a>-->
-      <!--                  <ul aria-expanded="false">-->
-      <!--                      <li><a href="{{ route('admin.admin-product') }}">Billings</a></li>-->
-      <!--                      <li><a href="{{route('admin.adminProduct')}}">Billings Report</a></li>-->
+                  <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+							<i class="flaticon-045-heart"></i>
+							<span class="nav-text">Change Dashboard</span>
+						</a>
+                      <ul aria-expanded="false">
+                          <li><a href="{{ route('admin.admin-product') }}">Change Dashboard</a></li>
+                           <!-- <li><a href="{{route('admin.adminProduct')}}">Billings Report</a></li> -->
                           
-      <!--                  </ul>-->
-      <!--              </li>-->
+                       </ul>
+                  </li>
 
 
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
