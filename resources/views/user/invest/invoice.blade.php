@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>
@@ -13,6 +13,7 @@
       	.ft11{font-size:23px;font-family:BAAAAA+Forum;color:#000000;}
       	.ft12{font-size:25px;font-family:BAAAAA+Forum;color:#000000;}
       	.ft13{font-size:15px;line-height:36px;font-family:BAAAAA+Forum;color:#000000;}
+        
       -->
     </style>
   </head>
@@ -28,8 +29,7 @@
       style="position: relative; width: 1188px; height: 1835px"
     >
       <img
-        width="1188"
-        height="1835"
+       
         src="/image/bill.png"
         alt="background image"
       />
