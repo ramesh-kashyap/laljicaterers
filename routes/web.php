@@ -88,6 +88,7 @@ Route::any('/ecommerceCart', [App\Http\Controllers\UserPanel\AddFund::class, 'ec
 Route::post('/fund_activation', [App\Http\Controllers\UserPanel\AddFund::class, 'fundActivation'])->name('user.fundActivation');
 Route::post('/seller_billing', [App\Http\Controllers\UserPanel\AddFund::class, 'sellerBilling'])->name('user.sellerBilling');
 Route::post('/vendor_billing', [App\Http\Controllers\UserPanel\AddFund::class, 'vendorBilling'])->name('user.vendorBilling');
+Route::any('/vendorCart', [App\Http\Controllers\UserPanel\AddFund::class, 'vendorCart'])->name('user.vendorCart');
 
 // end add fund
 

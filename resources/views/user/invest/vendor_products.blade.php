@@ -92,7 +92,7 @@ $(document).ready(function() {
     $('#go-to-cart').click(function() {
         // Create a form and submit it to the user.agentActivation route
         var form = $('<form>', {
-            action: '{{ route("user.ecommerce_cart") }}',
+            action: '{{ route("user.vendorCart") }}',
             method: 'POST'
         });
 

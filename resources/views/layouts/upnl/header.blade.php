@@ -234,7 +234,7 @@ span.badge.badge-success {
 
 
                             <li>
-                                <a href="{{route('user.vendor_cards')}}" class="has-arrow waves-effect">
+                                <a href="{{route('user.vendor_cards')}}" class=" waves-effect">
                                     <i class="bx bx-store"></i>
                                     <span key="t-ecommerce"> Menu</span>
                                 </a>

@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-sm-6">
-                                        <a href="{{route('user.AddFund')}}" class="btn btn-secondary">
+                                        <a href="{{route('user.vendor_cards')}}" class="btn btn-secondary">
                                             <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
                                     </div> <!-- end col -->
                                 </div> <!-- end row-->
@@ -56,54 +56,63 @@
                     </div>
                 </div>
                 <div class="col-xl-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title mb-3">Order Summary</h4>
-                            <input type="hidden" name="user_id" value="{{@$user_id}}"> 
-                            <div class="table-responsive">
-                                <table class="table mb-0">
-                                    <tbody>
-                                        <tr>
-                                            <td>Grand Total :</td>
-                                            <td> <span id="grandTotal">0</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discount : </td>
-                                            <td>- <span id="DiscountTotal">0</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Coupon : </td>
-                                            <td>- <span id="CouponTotal">0</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Total :</th>
-                                            <th><span id="cartTotal"></span></th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title mb-3">Order Summary</h4>
+            <input type="hidden" name="user_id" value="{{@$user_id}}">
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <tbody>
+                        <tr>
+                            <td>Grand Total :</td>
+                            <td><span id="grandTotal">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Discount :</td>
+                            <td>- <span id="DiscountTotal">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Coupon :</td>
+                            <td>- <span id="CouponTotal">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Payment Method :</td>
+                            <td>
+                                <select name="payment_method" class="form-select">
+                                    <option value="cash">Cash</option>
+                                    <option value="online">Online</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Total :</th>
+                            <th><span id="cartTotal"></span></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                            <div class="row mt-4">
-                                <div class="col-sm-4">
-                                    <input type="hidden" name="cartTotal" class="cartTotal">
-                                    <input type="hidden" name="grandTotal" class="grandTotal">
-                                    <input type="hidden" name="DiscountTotal" class="DiscountTotal">
-                                    <input type="hidden" name="CouponTotal" class="CouponTotal">
-                                    <input type="hidden" name="payment_mode" value="Cash"> <!-- Add this hidden input -->
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="text-sm-end mt-2 mt-sm-0">
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="mdi mdi-cart-arrow-right me-1"></i> Confirm </button>
-                                    </div>
-                                </div> <!-- end col -->
-                                <div class="col-sm-4">
-                                </div>
-                            </div> <!-- end row-->
-                        </form>
-                        <!-- end table-responsive -->
+            <div class="row mt-4">
+                <div class="col-sm-4">
+                    <input type="hidden" name="cartTotal" class="cartTotal">
+                    <input type="hidden" name="grandTotal" class="grandTotal">
+                    <input type="hidden" name="DiscountTotal" class="DiscountTotal">
+                    <input type="hidden" name="CouponTotal" class="CouponTotal">
+                </div>
+                <div class="col-sm-4">
+                    <div class="text-sm-end mt-2 mt-sm-0">
+                        <button type="submit" class="btn btn-success">
+                            <i class="mdi mdi-cart-arrow-right me-1"></i> Confirm
+                        </button>
                     </div>
                 </div>
+                <div class="col-sm-4">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
                 <!-- end card -->
             </div>
         </div>
