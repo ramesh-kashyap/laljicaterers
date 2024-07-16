@@ -42,6 +42,7 @@
                                                 <th>Address</th>
                                                 <th>Payment Mode</th>
                                                 <th>Billing Date</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
