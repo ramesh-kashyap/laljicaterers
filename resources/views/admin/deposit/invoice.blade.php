@@ -1,22 +1,36 @@
 
+<style>h1 {
+  display: block;
+  font-size: 5em;
 
+  margin-left: 0;
+ 
+}</style>
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
-                <div class="row page-titles">
+                <!-- <div class="row page-titles">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active"><a href="javascript:void(0)">Layout</a></li>
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Blank</a></li>
                     </ol>
-                </div>
-                <div class="row">
+                </div> -->
+                <div class="row" style="border: 3px dotted black;
+">
                     <div class="col-lg-12">
 
                         <div class="card mt-3">
-                            <div class="card-header"> Invoice <strong>  {{date("D, d M Y", strtotime($investment->sdate))}}</strong> <span class="float-end">
-                                    <strong>Status:</strong> <span style="color: green;font-weight:800">PAID</span> </div>
+                            <div class="card-header" style="background:#ffa41d;color:#ffa41d;"> Invoice <strong>   <div class="brand-logo mb-3">
+                                                    <img class="logo-abbr me-2" width="10"
+                                                        src="{{asset('main/images/logo.png')}}" alt="" style="width:170px; height:120px;">
+                                                  
+                                                </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 style="color:white;">MENU</h1></strong>  <span class="float-end">
+
+
+                                               
+                                    <strong>Status:</strong> <span style="color: green;font-weight:800"></span> </div>
                             <div class="card-body">
                                 <div class="row mb-5">
                                     <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12">
@@ -41,10 +55,10 @@
                                         class="mt-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-lg-end justify-content-md-center justify-content-xs-start">
                                         <div class="row align-items-center">
                                             <div class="col-sm-9">
-                                                <div class="brand-logo mb-3">
+                                                <!-- <div class="brand-logo mb-3">
                                                     <img class="logo-abbr me-2" width="10"
                                                         src="{{asset('main/images/logo.png')}}" alt="" style="width:90px">
-                                                  
+                                                   -->
                                                 </div>
                                                 <br>
                                         </div>
