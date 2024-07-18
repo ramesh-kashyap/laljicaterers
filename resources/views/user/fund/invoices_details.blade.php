@@ -19,6 +19,8 @@
   <body bgcolor="#A0A0A0" vlink="blue" link="blue">
     <div class="main-content">
 
+    <div class="page-content">
+        <div class="container-fluid">
       <div class="page-content" style="overflow-x: auto">
           <div class="container-fluid" style="padding-left:10%">
 
@@ -78,45 +80,45 @@
                                     <div class="card-body" style="
     border: black 1px dotted;
 ">
-                                        <div class="invoice-title" style="
+                            <div class="invoice-title" style="
     background: #f1b44c;
 ">
-                                            <center>
-                                             <div class="mb-4" style="
+                                <center>
+                                    <div class="mb-4" style="
     background: #f1b44c;
 ">
-                                                <img src="http://127.0.0.1:8000/main/images/logo.png" alt="logo" height="80">
-                                            </div> 
-                                            </center>
-                                            <center>
+                                        <img src="http://127.0.0.1:8000/main/images/logo.png" alt="logo" height="80">
+                                    </div>
+                                </center>
+                                <center>
 
-                                           <h1 style="
+                                    <h1 style="
     font-size: xxx-large;
     color: white;
     /* text-decoration: wavy; */
     /* font-variant: simplified; */
     /* font-size: -webkit-xxx-large; */
 ">
-                                          <b>  MENU</b>
-                                           </h1>
-                                        </center>
+                                        <b> MENU</b>
+                                    </h1>
+                                </center>
 
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <address>
-                                                    <strong>Customer's Detail:</strong><br>
-                                                    morsapprofitzone@gmail.com<br>
-                                                    9812340321<br>
-                                                    <strong>Billed To:</strong><br>
-                                                    Ramesh<br>
-                                                    Ram Nagar Panipat
-                                                </address>
-                                            </div>
-                                            <div class="col-sm-6 text-sm-end">
-                                                <address class="mt-2 mt-sm-0">
-                                                    <strong>Shipped To:</strong>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <address>
+                                        <strong>Customer's Detail:</strong><br>
+                                        morsapprofitzone@gmail.com<br>
+                                        9812340321<br>
+                                        <strong>Billed To:</strong><br>
+                                        Ramesh<br>
+                                        Ram Nagar Panipat
+                                    </address>
+                                </div>
+                                <div class="col-sm-6 text-sm-end">
+                                    <address class="mt-2 mt-sm-0">
+                                        <strong>Shipped To:</strong>
 
                                                     <br>
                                                     Ramesh<br>

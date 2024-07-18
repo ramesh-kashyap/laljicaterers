@@ -116,7 +116,18 @@
                                         </table>
                                         
                                     </div>
-                                   
+                                        
+                                    <div class="d-print-none">
+                                <div class="float-end">
+                                    <button onclick="printInvoice()" class="btn btn-success waves-effect waves-light me-1">
+                                        <i class="fa fa-print"></i> Print
+                                    </button>
+                                    <a href="{{route('user.DepositHistory')}}" class="btn btn-primary w-md waves-effect waves-light">
+                                        <i class="fa fa-arrow-left"></i> Back
+                                    </a>
+                                </div>
+                            </div>
+
                                 </div>
                             </div>
                         </div>
@@ -127,3 +138,34 @@
         <!--**********************************
             Content body end
         ***********************************-->
+        <style>
+
+@media print {
+            .invoice-title, .invoice-title .mb-4 ,.card-header{
+                background: #f1b44c !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+@media print {
+    
+    .footer,.nav-header,.page-title-box,.right-bar,.vertical-menu,.deznav,.header{
+                                    display: none!important
+                                }
+
+                                .content-body,.card-body,.main-content,.page-content,.right-bar,body {
+                                    padding: 0;
+                                    margin: 0
+                                }
+
+                                .card {
+                                    border: 0
+    }
+   
+}
+</style>
+<script>
+function printInvoice() {
+    window.print();
+}
+</script>

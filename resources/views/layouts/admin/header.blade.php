@@ -121,7 +121,7 @@ display: none;
         ***********************************-->
         <div class="nav-header">
             <a href="{{asset('')}}" class="brand-logo">
-                <img src="{{asset('')}}main/img/logo-white.png"  alt=""/>
+                <img src="{{asset('main/images/logo.png')}}"  style="width:123px;" alt=""/>
             </a>
             <div class="nav-control">
                 <div class="hamburger">
