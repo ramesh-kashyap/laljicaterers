@@ -341,7 +341,7 @@ class Invest extends Controller
             $limit = $request->limit ? $request->limit : paginationLimit();
               $status = $request->status ? $request->status : null;
               $search = $request->search ? $request->search : null;
-              $notes = Seller_invoice::where('user_id',$user->id)->first();
+              $notes = Seller_invoice::where('request_status','open')->first();
             
             if($search <> null && $request->reset!="Reset"){
               $notes = $notes->where(function($q) use($search){
@@ -364,36 +364,50 @@ class Invest extends Controller
           }
 
 
+          public function closeRequest($id)
+{
+    $invoice = Seller_invoice::find($id);
+    if ($invoice) {
+        $invoice->request_status = 'close';
+        $invoice->save();
+        return redirect()->back()->with('success', 'Request closed successfully.');
+    } else {
+        return redirect()->back()->with('error', 'Request not found.');
+    }
+}
+
+
+
          
-    public function vender_history(Request $request){
+          public function vender_history(Request $request){
 
-      $user=Auth::user();
-        $limit = $request->limit ? $request->limit : paginationLimit();
-          $status = $request->status ? $request->status : null;
-          $search = $request->search ? $request->search : null;
-          $notes = VendorBilling::where('user_id',$user->id)->where('status', 'Active')->orderBy('id', 'DESC');
+            $user=Auth::user();
+              $limit = $request->limit ? $request->limit : paginationLimit();
+                $status = $request->status ? $request->status : null;
+                $search = $request->search ? $request->search : null;
+                $notes = VendorBilling::where('user_id',$user->id)->where('status', 'Active')->orderBy('id', 'DESC');
+              
+              if($search <> null && $request->reset!="Reset"){
+                $notes = $notes->where(function($q) use($search){
+                  $q->Where('user_id_fk', 'LIKE', '%' . $search . '%')
+                  ->orWhere('transaction_id', 'LIKE', '%' . $search . '%')
+                  ->orWhere('status', 'LIKE', '%' . $search . '%')
+                  ->orWhere('sdate', 'LIKE', '%' . $search . '%')
+                  ->orWhere('email', 'LIKE', '%' . $search . '%');
+                });
         
-        if($search <> null && $request->reset!="Reset"){
-          $notes = $notes->where(function($q) use($search){
-            $q->Where('user_id_fk', 'LIKE', '%' . $search . '%')
-            ->orWhere('transaction_id', 'LIKE', '%' . $search . '%')
-            ->orWhere('status', 'LIKE', '%' . $search . '%')
-            ->orWhere('sdate', 'LIKE', '%' . $search . '%')
-            ->orWhere('email', 'LIKE', '%' . $search . '%');
-          });
-  
-        }
-  
-          $notes = $notes->paginate($limit)->appends(['limit' => $limit ]);
-  
-        $this->data['search'] =$search;
-        $this->data['deposit_list'] =$notes;
-        $this->data['page'] = 'user.invest.vendor_his';
-        return $this->dashboard_layout();
-
-
-
-      }
+              }
+        
+                // $notes = $notes->paginate($limit)->appends(['limit' => $limit ]);
+        
+              $this->data['search'] =$search;
+              $this->data['deposit_list'] =$notes;
+              $this->data['page'] = 'user.invest.vendor_his';
+              return $this->dashboard_layout();
+      
+      
+      
+            }
 
     public function vendor_card(Request $request)
     {

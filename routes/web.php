@@ -108,9 +108,11 @@ Route::get('/agent_invoice', [App\Http\Controllers\UserPanel\Invest::class, 'age
 Route::post('/fundActivation', [App\Http\Controllers\UserPanel\Invest::class, 'fundActivation'])->name('user.fund_activation');
 Route::get('/DepositHistory', [App\Http\Controllers\UserPanel\Invest::class, 'invest_list'])->name('user.DepositHistory');
 Route::any('/ecommerce_cart', [App\Http\Controllers\UserPanel\Invest::class, 'ecommerce_cart'])->name('user.ecommerce_cart');
-Route::get('view-invoice/{id}', [App\Http\Controllers\UserPanel\Invest::class, 'veiew_invoic'])->name('user.view-invoice');
+Route::get('view-invoice/{id}', [App\Http\Controllers\UserPanel\Invest::class, 'view_invoice'])->name('user.view-invoice');
 Route::get('/vendor_invoice/{id}', [App\Http\Controllers\UserPanel\Invest::class, 'vendor_invoice'])->name('user.vendor_invoice');
 Route::get('/vendor_cards', [App\Http\Controllers\UserPanel\Invest::class, 'vendor_cards'])->name('user.vendor_cards');
+Route::post('/close-request/{id}',[App\Http\Controllers\UserPanel\Invest::class,'closeRequest'])->name('user.close-request');
+
 
 
 Route::post('/get-products', [App\Http\Controllers\UserPanel\Invest::class, 'fetchProduct'])->name('product.fatch');
