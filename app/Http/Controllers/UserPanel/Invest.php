@@ -385,7 +385,8 @@ class Invest extends Controller
               $limit = $request->limit ? $request->limit : paginationLimit();
                 $status = $request->status ? $request->status : null;
                 $search = $request->search ? $request->search : null;
-                $notes = VendorBilling::where('user_id',$user->id)->where('status', 'Active')->orderBy('id', 'DESC');
+                $notes = VendorBilling::where('user_id',$user->id)->orderBy('id', 'DESC')->get();
+
               
               if($search <> null && $request->reset!="Reset"){
                 $notes = $notes->where(function($q) use($search){
