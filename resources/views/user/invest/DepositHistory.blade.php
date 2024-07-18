@@ -27,15 +27,15 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Agent Name</th>
                                         <th>Customer Name</th>
                                         <th>Phone</th>
                                         <th>Email</th>
-                                        <th>Address</th>
-                                        <th>Payment Mode</th>
-                                        <th>Billing Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                        
+                                        <th>City</th>
+                                        <th>Total Person</th>
+                                        <th>Enquiry Date</th>
+                                        <th>Status of Enquiry</th>
+                                        <th>Menu Generated Pdf</th>
                                         <th>Close</th>
                                     </tr>
                                 </thead>
@@ -45,11 +45,12 @@
                                         @foreach($deposit_list as $value)
                                             <tr>
                                                 <td><?= $cnt += 1?></td>
+                                                <td>{{ $value->user->name }}</td>
                                                 <td>{{ $value->name }}</td>
                                                 <td>{{ $value->phone }}</td>
                                                 <td>{{ $value->email }}</td>
-                                                <td>{{ $value->address }}</td>
-                                                <td>{{ $value->mode ? $value->mode : "Cash" }}</td>
+                                                <td>{{ $value->city }}</td>
+                                                <td>{{ $value->total_people}}</td>
                                                 <td>{{ $value->sdate }}</td>
                                                 <td>{{ $value->request_status }}</td>
                                                 <td>
