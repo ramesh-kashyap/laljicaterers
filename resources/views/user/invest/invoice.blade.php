@@ -44,8 +44,8 @@
                                     <div class="mb-4" style="
     background: #f1b44c;
 ">
-                                        <img src="http://127.0.0.1:8000/main/images/logo.png" alt="logo" height="80">
-                                    </div>
+                                                                            <img src="{{ asset('') }}main/images/logo.png" alt="logo" height="80">
+                                                                        </div>
                                 </center>
                                 <center>
 
