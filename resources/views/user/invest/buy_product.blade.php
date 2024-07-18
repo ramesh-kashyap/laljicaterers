@@ -135,51 +135,7 @@
             }
         });
 
-        // Function to fetch products based on filter type
-        // function fetchProducts(filterType) {
-        //     $.ajax({
-        //         url: '{{ route("get.product") }}', // Update with your route
-        //         type: 'POST',
-        //         data: {
-        //             _token: '{{ csrf_token() }}',
-        //             filter: filterType
-        //         },
-        //         success: function (response) {
-        //             $('#product-list').empty(); // Clear previous products
-
-        //             // Iterate through each product and append it to the product list
-        //             $.each(response.products, function (index, product) {
-        //                 var productHtml = `
-        //                 <div class="col-xl-4 col-sm-6">
-        //                     <div class="card">
-        //                         <div class="card-body">
-        //                             <div class="product-img position-relative">
-        //                                 <div class="avatar-sm product-ribbon"></div>
-        //                                 <img src="${product.image}" alt="" class="img-fluid mx-auto d-block" style="width:160px;height:160px;">
-        //                             </div>
-        //                             <div class="mt-4 text-center">
-        //                                 <h5 class="mb-3 text-truncate"><a href="javascript:void(0);" class="text-dark">${product.productName}</a></h5>
-        //                                 <div class="text-center">
-        //                                     <button type="button" class="btn btn-primary waves-effect waves-light mt-2 me-1" data-product-id="${product.id}">
-        //                                         <i class="bx bx-cart me-2"></i> Add to cart
-        //                                     </button>
-        //                                 </div>
-        //                             </div>
-        //                         </div>
-        //                     </div>
-        //                 </div>`;
-        //                 $('#product-list').append(productHtml);
-        //             });
-
-        //             // Update pagination links
-        //             $('#pagination-links').html(response.pagination);
-        //         },
-        //         error: function (xhr) {
-        //             console.log('Error:', xhr);
-        //         }
-        //     });
-        // }
-
+        
         // Function to add product to cart
         function addToCart(productId, button) {
             if (cartItems.indexOf(productId) === -1) {
