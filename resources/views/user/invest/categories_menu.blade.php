@@ -56,11 +56,13 @@
                                 <div class="card-body">
                                     <div class="product-img position-relative">
                                         <div class="avatar-sm product-ribbon"></div>
-                                                                               <img src="{{ asset($product->image) }}" alt="" class="img-fluid mx-auto d-block" style="width:160px;height:160px;">
+                                                                               <img src="{{ asset($product->image) }}" alt="" class="img-fluid mx-auto d-block" style="width:290px;height:190px;border-radius:5px;">
 
                                     </div>
                                     <div class="mt-4 text-center">
-                                        <h5 class="mb-3 text-truncate"><a href="javascript:void(0);" class="text-dark">{{ $product->productName }}</a></h5>
+                                        <h4 class="mb-3 text-truncate"><a href="javascript:void(0);" class="text-dark">{{ $product->productName }}</a></h4>
+                                        <h5 class="mb-3 text-truncate"><a href="javascript:void(0);" class="text-dark">{{ $product->ProductDiscription }}</a></h5>
+
                                         <div class="text-center">
                                             <button type="button" class="btn btn-primary waves-effect waves-light mt-2 me-1" data-product-id="{{ $product->id }}">
                                                 <i class="bx bx-cart me-2"></i> Add to cart
@@ -146,10 +148,12 @@
                                     <div class="card-body">
                                         <div class="product-img position-relative">
                                             <div class="avatar-sm product-ribbon"></div>
-                                            <img src="` + product.image + `" alt="" class="img-fluid mx-auto d-block" style="width:160px;height:160px;">
+                                            <img src="` + product.image + `" alt="" class="img-fluid mx-auto d-block" style="width:290px;height:190px;border-radius:5px;">
                                         </div>
                                         <div class="mt-4 text-center">
-                                            <h5 class="mb-3 text-truncate"><a href="javascript: void(0);" class="text-dark">` + product.productName + `</a></h5>
+                                            <h4 class="mb-3 text-truncate"><a href="javascript: void(0);" class="text-dark">` + product.productName + `</a></h4>
+                                                                                        <h5 class="mb-3 text-truncate"><a href="javascript: void(0);" class="text-dark">` + product.ProductDiscription + `</a></h5>
+
                                             <div class="text-center">
                                                 <button type="button" class="btn btn-primary waves-effect waves-light mt-2 me-1" data-product-id="` + product.id + `">
                                                     <i class="bx bx-cart me-2"></i> Add to cart

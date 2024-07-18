@@ -1,6 +1,14 @@
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
+<style>
+        @media print {
+            .invoice-title, .invoice-title .mb-4 {
+                background: #f1b44c !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
 <div class="main-content">
 
     <div class="page-content">
@@ -27,33 +35,20 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-body" style="
-    border: black 1px dotted;
-">
-                            <div class="invoice-title" style="
-    background: #f1b44c;
-">
-                                <center>
-                                    <div class="mb-4" style="
-    background: #f1b44c;
-">
-                                        <img src="http://127.0.0.1:8000/main/images/logo.png" alt="logo" height="80">
-                                    </div>
-                                </center>
-                                <center>
+                        <div class="card-body" style=" border: black 1px dotted;">
+                        <div class="invoice-title" style="background: #f1b44c;">
+    <center>
+        <div class="mb-4" style="background: #f1b44c;">
+            <img src="http://127.0.0.1:8000/main/images/logo.png" alt="logo" height="80">
+        </div>
+    </center>
+    <center>
+        <h1 style="font-size: xxx-large; color: white;">
+            <b> MENU</b>
+        </h1>
+    </center>
+</div>
 
-                                    <h1 style="
-    font-size: xxx-large;
-    color: white;
-    / text-decoration: wavy; /
-    / font-variant: simplified; /
-    / font-size: -webkit-xxx-large; /
-">
-                                        <b> MENU</b>
-                                    </h1>
-                                </center>
-
-                            </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-6">

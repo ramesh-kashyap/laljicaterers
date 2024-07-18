@@ -6,7 +6,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Cart</h4>
+                        <h4 class="mb-sm-0 font-size-18">
+                            
+                        </h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
@@ -20,7 +22,7 @@
             <!-- end page title -->
 
             <div class="row">
-                <div class="col-xl-8">
+                <div class="col-xl-12">
                     <div class="card">
                         <div class="card-body">
                             <form action="{{ route('user.sellerBilling') }}" method="POST">
@@ -70,85 +72,105 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title mb-3">Order Summary</h4>
-                            <input type="hidden" name="user_id" value="{{ @$user_id }}">
-                            <input type="hidden" name="payment_mode" value="{{ $payment_mode }}">
-                            <div class="table-responsive">
-                                <table class="table mb-0">
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Name:</strong></td>
-                                            <td>
-                                                <input type="text" name="name" class="form-control" value="{{ $name }}" required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Phone:</strong></td>
-                                            <td>
-                                                <input type="text" name="phone" class="form-control" value="{{ $phone }}" required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Email:</strong></td>
-                                            <td>
-                                                <input type="email" name="email" class="form-control" value="{{ $email }}" required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>city:</strong></td>
-                                            <td>
-                                                <input type="text" name="city" class="form-control"
-                                                    value="" required>
-                                            </td>
-                                        </tr>
-                                          <tr>
-                                            <td><strong>Event:</strong></td>
-                                            <td>
-                                                <select name="event" class="form-control" required>
-                                                    <option value="bithday">Birthday</option>
-                                                    <option value="marriage">Marriage</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                            <td><strong>Payment Mode:</strong></td>
-                                            <td>
-        <select name="payment_mode" class="form-control" required>
-            <option value="cash" {{ $payment_mode == 'cash' ? 'selected' : '' }}>Cash</option>
-            <option value="online" {{ $payment_mode == 'online' ? 'selected' : '' }}>Online</option>
-        </select>
-    </td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Total Quantity:</strong></td>
-                                            <td>
-                                                <span id="totalQuantity">0</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                <div class="col-xl-8">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title mb-3">Order Summary</h4>
+                
+                <input type="hidden" name="user_id" value="{{ @$user_id }}">
+                <input type="hidden" name="payment_mode" value="{{ $payment_mode }}">
 
-                            <div class="row mt-4">
-                                <div class="col-sm-4">
-                                    <input type="hidden" name="grandTotal" class="grandTotal">
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="text-sm-end mt-2 mt-sm-0">
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="mdi mdi-cart-arrow-right me-1"></i> Confirm
-                                        </button>
-                                    </div>
-                                </div> <!-- end col -->
-                                <div class="col-sm-4"></div>
-                            </div> <!-- end row-->
-                        </form>
-                        <!-- end table-responsive -->
+                <div class="row">
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="name" class="form-label"><strong>Name:</strong></label>
+                            <input type="text" name="name" id="name" class="form-control" value="{{ $name }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label"><strong>Phone:</strong></label>
+                            <input type="text" name="phone" id="phone" class="form-control" value="{{ $phone }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label"><strong>Email:</strong></label>
+                            <input type="email" name="email" id="email" class="form-control" value="{{ $email }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dinner" class="form-label"><strong>City:</strong></label>
+                            <input type="text" name="city" id="dinner" class="form-control" value="" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="event_date" class="form-label"><strong>Event Date:</strong></label>
+                            <input type="date" name="event_date" id="event_date" class="form-control" value="" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="breakfast" class="form-label"><strong>Additional Inquiry:</strong></label>
+                            <input type="text" name="additional_enquiry" id="breakfast" class="form-control" value="" >
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="total_people" class="form-label"><strong>Total No. Of People:</strong></label>
+                            <input type="text" name="total_people" id="total_people" class="form-control" value="" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label"><strong>People Taking Breakfast:</strong></label>
+                            <input type="text" name="no_breakfast" id="event" class="form-control" value="" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label"><strong>People Taking Lunch:</strong></label>
+                            <input type="text" name="no_lunch" id="city" class="form-control" value="" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label"><strong>People Taking Dinner :</strong></label>
+                            <input type="text" name="no_dinner" id="city" class="form-control" value="" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="event" class="form-label"><strong>Event:</strong></label>
+                            <select name="event" id="event" class="form-control" required>
+                                <option value="birthday">Birthday</option>
+                                <option value="marriage">Marriage</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="payment_mode" class="form-label"><strong>Payment Mode:</strong></label>
+                            <select name="payment_mode" id="payment_mode" class="form-control" required>
+                                <option value="cash" {{ $payment_mode == 'cash' ? 'selected' : '' }}>Cash</option>
+                                <option value="online" {{ $payment_mode == 'online' ? 'selected' : '' }}>Online</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="totalQuantity" class="form-label"><strong>Total Quantity:</strong></label>
+                            <span id="totalQuantity">0</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="hidden" name="grandTotal" class="grandTotal">
+                    </div>
                 </div>
+
+                <div class="row mt-4">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4 text-center">
+                        <button type="submit" class="btn btn-success">
+                            <i class="mdi mdi-cart-arrow-right me-1"></i> Confirm
+                        </button>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
                 
                 <!-- end card -->
             </div>

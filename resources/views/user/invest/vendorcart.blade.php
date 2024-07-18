@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-sm-6">
-                                        <a href="{{ route('user.invest') }}" class="btn btn-secondary">
+                                        <a href="{{ route('user.buy_products') }}" class="btn btn-secondary">
                                             <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping
                                         </a>
                                     </div>
@@ -60,15 +60,11 @@
                                 </div>
 
                                 <input type="hidden" name="cartTotal" class="cartTotal">
-                                <input type="hidden" name="grandTotal" class="grandTotal">
-                                <input type="hidden" name="DiscountTotal" class="DiscountTotal">
-                                <input type="hidden" name="CouponTotal" class="CouponTotal">
-                                <input type="hidden" name="name" value="{{ $name }}">
-                                <input type="hidden" name="payment_mode" value="{{ $payment_mode }}">
-                                <input type="hidden" name="email" value="{{ $email }}">
-                                <input type="hidden" name="phone" value="{{ $phone }}">
-                                <input type="hidden" name="address" value="{{ $address }}">
-                            </form>
+<input type="hidden" name="grandTotal" class="grandTotal">
+<input type="hidden" name="DiscountTotal" class="DiscountTotal">
+<input type="hidden" name="CouponTotal" class="CouponTotal">
+
+                               
                         </div>
                     </div>
                 </div>
@@ -76,6 +72,35 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-3">Order Summary</h4>
+
+                            <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" name="name" required>
+</div>
+<div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+</div>
+<div class="mb-3">
+    <label for="phone" class="form-label">Phone Number</label>
+    <input type="text" class="form-control" id="phone" name="phone" required>
+</div>
+<div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
+                </div>
+                <div class="mb-3">
+                    <label for="payment_mode" class="form-label">Payment Mode</label>
+                    <select class="form-control" id="payment_mode" name="payment_mode" required>
+                        <option value="" disabled selected>Select Payment Mode</option>
+                        <option value="cash">Cash</option>
+                        <option value="online">Online</option>
+                       
+                    </select>
+                </div>
+
+                            </form>
+
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <tbody>

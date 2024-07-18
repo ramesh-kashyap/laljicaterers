@@ -208,7 +208,12 @@ public function sellerBilling(Request $request)
             'phone' => 'required|string',
             'city' => 'required|string',
             'event' => 'required|string',
-            'payment_mode' => 'required|string', // Added validation for payment_mode
+            'no_dinner' => 'required',
+            'no_lunch' => 'required',
+            'no_breakfast' => 'required',
+            'total_people' => 'required',
+            'event_date' => 'required',
+            'payment_mode' => 'required', // Added validation for payment_mode
         ]);
 
         if ($validation->fails()) {
@@ -222,6 +227,13 @@ public function sellerBilling(Request $request)
         $name = $request->input('name');
         $email = $request->input('email');
         $phone = $request->input('phone');
+        $no_dinner = $request->input('no_dinner');
+        $no_breakfast = $request->input('no_breakfast');
+        $no_lunch = $request->input('no_lunch');
+        $total_people = $request->input('total_people');
+        $additional_enquiry = $request->input('additional_enquiry');
+        $event_date = $request->input('event_date');
+
         $event = $request->input('event');
         $city = $request->input('city');
         $payment_mode = $request->input('payment_mode'); // Retrieve payment_mode from request
@@ -244,6 +256,14 @@ public function sellerBilling(Request $request)
             'email' => $email,
             'phone' => $phone,
             'city' => $city,
+            'no_dinner' => $no_dinner,
+            'no_breakfast' => $no_breakfast,
+            'no_lunch' => $no_lunch,
+            'total_people' => $total_people,
+            'additional_enquiry' => $additional_enquiry,
+            'event_date' => $event_date,
+
+
             'event' => $event,
             'grandTotal' => $totalQuantity,
             'status' => 'Pending',
@@ -278,7 +298,6 @@ public function sellerBilling(Request $request)
         return redirect()->route('user.Addagent')->withErrors(['error' => $e->getMessage()])->withInput();
     }
 }
-
 public function vendorBilling(Request $request)
 {
     try {
@@ -286,29 +305,29 @@ public function vendorBilling(Request $request)
         $validation = Validator::make($request->all(), [
             'products' => 'required|array',
             'quantity' => 'required|array',
-            'name' => 'required|string',
-            'email' => 'required|string',
+            'name' => 'required',
+            'email' => 'required|string|email',
             'phone' => 'required|string',
             'address' => 'required|string',
-            'payment_mode' => 'required|string', // Added validation for payment_mode
+            'payment_mode' => 'required|string',
         ]);
 
         if ($validation->fails()) {
             Log::info($validation->getMessageBag()->first());
-            return redirect()->route('user.Addagent')->withErrors($validation->getMessageBag()->first())->withInput();
+            return redirect()->route('user.buy_products')->withErrors($validation->getMessageBag()->first())->withInput();
         }
 
         $user_detail = Auth::user();
-        $products = $request->products;
+        $products = $request->input('products');
         $quantities = $request->input('quantity', []);
         $name = $request->input('name');
         $email = $request->input('email');
         $phone = $request->input('phone');
         $address = $request->input('address');
-        $payment_mode = $request->input('payment_mode'); // Retrieve payment_mode from request
+        $payment_mode = $request->input('payment_mode');
 
         if (empty($products)) {
-            return redirect()->route('user.Addagent')->withErrors(['cart is empty']);
+            return redirect()->route('user.buy_products')->withErrors(['cart is empty']);
         }
 
         // Calculate total quantity
@@ -329,7 +348,7 @@ public function vendorBilling(Request $request)
             'status' => 'Pending',
             'created_at' => now(),
             'updated_at' => now(),
-            'mode' => $payment_mode, // Add payment_mode to invoice data
+            'mode' => $payment_mode,
         ];
         $invoiceId = VendorBilling::insertGetId($invoiceData);
 
@@ -351,14 +370,13 @@ public function vendorBilling(Request $request)
         }
 
         $notify[] = ['success', 'Product Request Submitted successfully'];
-        return redirect()->route('user.Addagent')->withNotify($notify);
+        return redirect()->route('user.buy_products')->withNotify($notify);
     } catch (\Exception $e) {
         Log::info('error here');
         Log::info($e->getMessage());
-        return redirect()->route('user.Addagent')->withErrors(['error' => $e->getMessage()])->withInput();
+        return redirect()->route('user.buy_products')->withErrors(['error' => $e->getMessage()])->withInput();
     }
 }
-
 
 
 public function SubmitBuyFund(Request $request)

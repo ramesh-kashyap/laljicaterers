@@ -112,9 +112,12 @@ Route::any('/ecommerce_cart', [App\Http\Controllers\UserPanel\Invest::class, 'ec
 Route::get('view-invoice/{id}', [App\Http\Controllers\UserPanel\Invest::class, 'view_invoice'])->name('user.view-invoice');
 Route::get('/vendor_invoice/{id}', [App\Http\Controllers\UserPanel\Invest::class, 'vendor_invoice'])->name('user.vendor_invoice');
 Route::get('/vendor_cards', [App\Http\Controllers\UserPanel\Invest::class, 'vendor_cards'])->name('user.vendor_cards');
+Route::get('/buy_products', [App\Http\Controllers\UserPanel\Invest::class, 'buy_products'])->name('user.buy_products');
 
 
 Route::post('/get-products', [App\Http\Controllers\UserPanel\Invest::class, 'fetchProduct'])->name('product.fatch');
+Route::post('/get-product', [App\Http\Controllers\UserPanel\Invest::class, 'getProducts'])->name('get.product');
+
 // end invest
 
 // withdraw

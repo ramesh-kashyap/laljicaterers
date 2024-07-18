@@ -400,16 +400,16 @@ class Invest extends Controller
       try {
         // Validate request
         $validation = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'phone' => 'required|numeric',
-            'email' => 'required|email|max:255',
-            'address' => 'required|string|max:255',
+            // 'name' => 'required|string|max:255',
+            // 'phone' => 'required|numeric',
+            // 'email' => 'required|email|max:255',
+            // 'address' => 'required|string|max:255',
             'products' => 'required|array',
-            'payment_mode' => 'required|string|in:cash,online',
+            // 'payment_mode' => 'required|string|in:cash,online',
         ]);
 
         if ($validation->fails()) {
-            return redirect()->route('user.invest')->withErrors($validation->getMessageBag()->first())->withInput();
+            return redirect()->route('user.buy_products')->withErrors($validation->getMessageBag()->first())->withInput();
         }
 
         $user = Auth::user();
@@ -431,7 +431,7 @@ class Invest extends Controller
         
     } catch (\Exception $e) {
         Log::error('Error in vendor cart processing: ' . $e->getMessage());
-        return redirect()->route('user.invest')->withErrors(['error' => $e->getMessage()])->withInput();
+        return redirect()->route('user.buy_products')->withErrors(['error' => $e->getMessage()])->withInput();
     }
     }
 
@@ -442,7 +442,7 @@ class Invest extends Controller
       $this->data['categories'] = $categoryname;
 
       $defaultCategoryId = $categoryname->first()->id;
-      $defaultProducts = Product::where('category_id', $defaultCategoryId)->get(['id', 'productName', 'image']);
+      $defaultProducts = Product::where('category_id', $defaultCategoryId)->get(['id', 'productName', 'image','ProductDiscription']);
       $this->data['defaultProducts'] = $defaultProducts;
 
     $this->data['page'] = 'user.invest.categories_menu';
@@ -454,7 +454,7 @@ class Invest extends Controller
   $categories = $request->input('categories');
     
   // Fetch products based on selected categories
-  $products = Product::whereIn('category_id', $categories)->get(['id', 'productName', 'image']); // assuming you have an 'image_url' field
+  $products = Product::whereIn('category_id', $categories)->get(['id', 'productName', 'image','ProductDiscription']); // assuming you have an 'image_url' field
 
   return response()->json(['products' => $products]);
 }
@@ -494,4 +494,97 @@ public function fetchProduct(Request $request)
     ]);
 }
 
+
+
+
+    //  show data in Buy_productrs
+
+    public function buy_products()
+    {
+      $user = Auth::user();
+
+      // Fetch vendor products for the user
+      $vendorProducts = Vendor_product::where('user_id', $user->id)
+                                      ->where('activeStatus', 1)
+                                      ->get();
+  
+      // Extract unique product IDs
+      $ids = $vendorProducts->pluck('product_id')->unique()->toArray();
+  
+      // Fetch products based on the IDs
+      $products = Vproduct::whereIn('id', $ids)->get();
+  
+      // Filter products based on balance quantity
+      $filteredProducts = $products->filter(function ($product) use ($user) {
+          $maxQuantity = \DB::table('vendor_products')
+                            ->where('user_id', $user->id)
+                            ->where('product_id', $product->id)
+                            ->where('activeStatus', 1)
+                            ->sum('quantity');
+  
+          $usedQuantity = \DB::table('user_products')
+                             ->where('user_id', $user->id)
+                             ->where('product_id', $product->id)
+                             ->sum('quantity');
+  
+          $balanceQuantity = $maxQuantity - $usedQuantity;
+  
+          return $balanceQuantity > 0;  // Only include products with balance quantity greater than 0
+      });
+  
+      $this->data['products'] = $filteredProducts;
+      $this->data['page'] = 'user.invest.buy_product';
+  
+      return $this->dashboard_layout();
+    }
+    
+
+//     public function getProducts(Request $request)
+// {
+//     $user = Auth::user();
+
+//     // Fetch vendor products for the user
+//     $vendorProducts = Vendor_product::where('user_id', $user->id)
+//                                     ->where('activeStatus', 1)
+//                                     ->get();
+
+//     // Extract unique product IDs
+//     $ids = $vendorProducts->pluck('product_id')->unique()->toArray();
+
+//     // Fetch products based on the IDs
+//     $products = Vproduct::whereIn('id', $ids);
+
+//     // Filter products based on balance quantity
+//     $filteredProducts = $products->get()->filter(function ($product) use ($user) {
+//         $maxQuantity = \DB::table('vendor_products')
+//                           ->where('user_id', $user->id)
+//                           ->where('product_id', $product->id)
+//                           ->where('activeStatus', 1)
+//                           ->sum('quantity');
+
+//         $usedQuantity = \DB::table('user_products')
+//                            ->where('user_id', $user->id)
+//                            ->where('product_id', $product->id)
+//                            ->sum('quantity');
+
+//         $balanceQuantity = $maxQuantity - $usedQuantity;
+
+//         return $balanceQuantity > 0;  // Only include products with balance quantity greater than 0
+//     });
+
+//     // Sorting logic based on request parameter
+//     $orderBy = $request->input('orderBy', 'asc'); // Default to ascending order
+//     $sortField = $request->input('sortField', 'productName'); // Default to sorting by productName
+
+//     $filteredProducts = $filteredProducts->sortBy($sortField, SORT_REGULAR, $orderBy === 'desc');
+
+//     $this->data['products'] = $filteredProducts;
+//     $this->data['page'] = 'user.invest.buy_product';
+
+//     return $this->dashboard_layout();
+// }
+
+    
+
+ 
 }
