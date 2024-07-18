@@ -25,6 +25,9 @@
                         </div>
                     </div>
                     <!-- end page title -->
+                     @php 
+                              $name = Auth::user()->role=="Vendor"? "Vendor" : "Agent";
+                     @endphp
 
                   
                     <!-- end row -->
@@ -39,37 +42,37 @@
 
                                         {{ csrf_field() }}
 
-                                        <div class="mb-3">
+                                        <!-- <div class="mb-3">
                                             <label class="form-label">Sponsor ID</label>
                                             <div>
                                                 <input class="form-control" type="text" name=""
                                                 value="{{ $profile_data->sponsor_detail ? $profile_data->sponsor_detail->username : '0' }}"
                                                 readonly>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="mb-3">
-                                            <label class="form-label">Customer ID</label>
+                                            <label class="form-label">{{$name}} ID</label>
                                             <div>
                                                 <input class="form-control" type="text" name="memberID"
                                                 value="{{ $profile_data ? $profile_data->username : '' }}" readonly>
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Customer Name</label>
+                                            <label class="form-label">{{$name}} Name</label>
                                             <div>
                                                 <input class="form-control" type="text" id="firstName" name="name"
                                                     value="{{ $profile_data ? $profile_data->name : '0' }}" autofocus />
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Customer Email ID</label>
+                                            <label class="form-label">{{$name}} Email ID</label>
                                             <div>
                                                 <input class="form-control" type="email" name="email"
                                                 value="{{ $profile_data ? $profile_data->email : '' }}" placeholder="Email ID" />
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Customer Mobile No</label>
+                                            <label class="form-label">{{$name}} Mobile No</label>
                                             <div>
                                                 <input type="text" value="{{($profile_data)?$profile_data->phone:''}}" id="phoneNumber" name="phone" class="form-control"
                                                 placeholder="202 555 0111" />
@@ -77,10 +80,10 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label">Customer Address</label>
+                                            <label class="form-label">{{$name}} Address</label>
                                             <div>
                                                 <input type="text" value="{{($profile_data)?$profile_data->address:''}}"  name="address" class="form-control"
-                                                placeholder="Customer Address" />
+                                                placeholder="{{$name}} Address" />
                                             </div>
                                         </div>
 
@@ -99,77 +102,7 @@
                             </div>
                         </div> <!-- end col -->
 
-                        <div class="col-xl-6">
-                            <div class="card">
-                                <div class="card-body">
-                                  
-
-                                    <form action="{{ route('user.bank-update') }}" method="POST">
-                                        @csrf
-                                        <div class="box-body">
-                                          <div class="row ">
-                                            <div class="col-lg-12">
-                                              <div class="form-group">
-                                                <label class="form-control-label">Bank Name <span class="tx-danger">*</span></label>
-                                                <input class="form-control" type="text" <?=(@$bank_value->bank_name)?"readonly":""?>  onkeyup="this.value=this.value.toUpperCase()"  name="bank_name" value="{{ @$bank_value->bank_name }}"
-                                                  placeholder="Enter Bank Name">
-                                              </div>
-                                            </div>
-                    
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                  <label class="form-control-label">Branch Name <span class="tx-danger">*</span></label>
-                                                  <input class="form-control" type="text" name="branch_name" onkeyup="this.value=this.value.toUpperCase()" <?=(@$bank_value->branch_name)?"readonly":""?>   value="{{ @$bank_value->branch_name }}"
-                                                    placeholder="Enter Branch Name">
-                                                </div>
-                                              </div>
-                    
-                                            <div class="col-lg-12">
-                                 
-                                              <div class="form-group">
-                                                <label class="form-control-label">A/C Holder First Name <span
-                                                    class="tx-danger">*</span></label>
-                                                <input class="form-control" type="text" <?=(@$bank_value->account_holder)?"readonly":""?>  name="account_holder" value="{{ @$bank_value->account_holder }}"
-                                                  placeholder="Enter a/c holder first name">
-                                              </div>
-                                            </div>
-                                          
-                                            <div class="col-lg-12">
-                                              <div class="form-group">
-                                                <label class="form-control-label">Bank IFSC <span class="tx-danger">*</span></label>
-                                                <input class="form-control" type="text" <?=(@$bank_value->ifsc_code)?"readonly":""?> onkeyup="this.value=this.value.toUpperCase()"  name="ifsc_code" value="{{ @$bank_value->ifsc_code }}"
-                                                  placeholder="Enter IFS Code " required>
-                                              </div>
-                                            </div>
-                    
-                    
-                                            <div class="col-lg-12">
-                                              <div class="form-group">
-                                                <label class="form-control-label">Bank A/c Number <span class="tx-danger">*</span></label>
-                                                <input class="form-control" type="text" onkeyup="this.value=this.value.toUpperCase()"  <?=(@$bank_value->account_no)?"readonly":""?>  name="account_number" value="{{ @$bank_value->account_no }}"
-                                                  placeholder="Enter Account Number" required>
-                                              </div>
-                                            </div>
-          
-                                            <div class="col-lg-12">
-                                              <div class="form-group">
-                                                <label class="form-control-label">Pancard No <span class="tx-danger">*</span></label>
-                                                <input type="text" value="{{@$bank_value->pancard_no}}" name="pancard_no" <?=(@$bank_value->pancard_no)?"readonly":""?>  onkeyup="this.value=this.value.toUpperCase()" class="form-control" >
-                                              </div>
-                                            </div>
-          
-                                          </div>
-                                          <br>
-                                          <div class="">
-                                            <a href="{{route('user.BankDetail')}}" class="btn btn-primary " type="button">CANCEL</a>
-                                            <button class="btn btn-success " type="submit" name="Bank89655656">UPDATE</button>
-                                          </div>
-                                        </div>
-                                      </form>
-
-                                </div>
-                            </div>
-                        </div> <!-- end col -->
+                        
 
 
                         

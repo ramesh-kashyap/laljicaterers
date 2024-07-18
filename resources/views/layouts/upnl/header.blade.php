@@ -285,7 +285,7 @@ span.badge.badge-success {
                             <li>
                                 <a href="{{route('user.DepositHistory')}}" class="waves-effect">
                                     <i class="bx bx-store"></i>
-                                    <span key="t-ecommerce">Customer Reports</span>
+                                    <span key="t-ecommerce">Enquiry Reports</span>
                                 </a>
                              
                             </li>

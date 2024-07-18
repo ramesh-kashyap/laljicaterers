@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Product Reports</h4>
+                        <h4 class="mb-sm-0 font-size-18">Enquiry Reports</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Buy Product</a></li>
@@ -27,14 +27,16 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Agent Name</th>
+                                      
                                         <th>Customer Name</th>
                                         <th>Phone</th>
                                         <th>Email</th>
                                         <th>City</th>
                                         <th>Total Person</th>
                                         <th>Enquiry Date</th>
+                                        <th>Agent Name</th>
                                         <th>Status of Enquiry</th>
+                                        
                                         <th>Menu Generated Pdf</th>
                                         <th>Close</th>
                                     </tr>
@@ -45,13 +47,13 @@
                                         @foreach($deposit_list as $value)
                                             <tr>
                                                 <td><?= $cnt += 1?></td>
-                                                <td>{{ $value->user->name }}</td>
                                                 <td>{{ $value->name }}</td>
                                                 <td>{{ $value->phone }}</td>
                                                 <td>{{ $value->email }}</td>
                                                 <td>{{ $value->city }}</td>
                                                 <td>{{ $value->total_people}}</td>
                                                 <td>{{ $value->sdate }}</td>
+                                                <td>{{ $value->user->name }}</td>
                                                 <td>{{ $value->request_status }}</td>
                                                 <td>
                                                     <a href="{{ route('user.view-invoice', ['id' => Crypt::encrypt($value->id)]) }}" class="btn btn-primary btn-sm btn-rounded">

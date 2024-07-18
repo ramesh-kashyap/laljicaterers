@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Investment;
 use App\Models\Income;
+use App\Models\Seller_invoice;
 use Carbon\Carbon;
 
 
@@ -21,45 +22,30 @@ class Dashboard extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
 
-      $user=Auth::user();
-      $user_direct=User::where('sponsor',$user->id)->where('active_status','Active')->count();
-      $personal_deposit=Investment::where('user_id',$user->id)->where('status','Active')->sum('amount');
-
-      $tolteam=$this->my_level_team_count($user->id);
-      if(!empty($tolteam))
-      {
-         $total_team_active = User::select('id')->whereIn('id',$tolteam)->where('active_status','Active')->get()->toArray();  
-         $total_ids=array_column($total_team_active,'id');
-         
-        $teamBusiness= Investment::whereIn('user_id',$total_ids)->where('status','Active')->sum('amount');
-         
-      }
-      else
-      {
-       $teamBusiness=0;   
-      }
-
-
-       $this->data['team_business'] =$teamBusiness;
-      $totalBusiness=$this->my_direct_business_count($user->id);
-   //   print_r($tolteam);die;
-    //   $total_team=(!empty($tolteam)?count($tolteam):0);
-       $total_team=User::whereIn('id',(!empty($tolteam)?$tolteam:array()))->where('active_status','Active')->count();
-      $deposit_report = Investment::where('user_id',$user->id)->orderBy('id','desc')->get();
-      $weekly_profit = Income::where('user_id',$user->id)
-      ->whereBetween('ttime', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->sum('comm');
-        $transaction_data = Investment::where('user_id',$user->id)->orderBy('id', 'desc')->take(10)->get();
-        $this->data['weekly_profit'] =$weekly_profit;
-        $this->data['transaction_data'] =$transaction_data;
-        $this->data['deposit_report'] =$deposit_report;
-        $this->data['user_direct'] =$user_direct;
-        $this->data['personal_deposit'] =$personal_deposit;
-      $this->data['total_team'] =$total_team;
-
-      $this->data['directBusiness'] =$totalBusiness;
+        $user=Auth::user();
+        $limit = $request->limit ? $request->limit : paginationLimit();
+          $status = $request->status ? $request->status : null;
+          $search = $request->search ? $request->search : null;
+          $notes = Seller_invoice::where('request_status','open')->orderBy('id','desc')->get();
+        
+        if($search <> null && $request->reset!="Reset"){
+          $notes = $notes->where(function($q) use($search){
+            $q->Where('user_id_fk', 'LIKE', '%' . $search . '%')
+            ->orWhere('transaction_id', 'LIKE', '%' . $search . '%')
+            ->orWhere('status', 'LIKE', '%' . $search . '%')
+            ->orWhere('sdate', 'LIKE', '%' . $search . '%')
+            ->orWhere('email', 'LIKE', '%' . $search . '%');
+          });
+  
+        }
+  
+      
+  
+        $this->data['search'] =$search;
+        $this->data['deposit_list'] =$notes;
 
 
       $this->data['page'] = 'user.dashboard';

@@ -19,7 +19,7 @@
             <!-- end page title -->
 
             <div class="row">
-                <div class="col-xl-8">
+                <div class="col-xl-12">
                     <div class="card">
                         <div class="card-body">
                             <form action="{{ route('user.vendorBilling') }}" method="POST">
@@ -68,61 +68,66 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title mb-3">Order Summary</h4>
-
-                            <div class="mb-3">
-    <label for="name" class="form-label">Name</label>
-    <input type="text" class="form-control" id="name" name="name" required>
-</div>
-<div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email" name="email" required>
-</div>
-<div class="mb-3">
-    <label for="phone" class="form-label">Phone Number</label>
-    <input type="text" class="form-control" id="phone" name="phone" required>
-</div>
-<div class="mb-3">
-                    <label for="address" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="address" name="address" required>
+                <div class="col-xl-8">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title mb-3">Order Summary</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" id="phone" name="phone" required>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="payment_mode" class="form-label">Payment Mode</label>
-                    <select class="form-control" id="payment_mode" name="payment_mode" required>
-                        <option value="" disabled selected>Select Payment Mode</option>
-                        <option value="cash">Cash</option>
-                        <option value="online">Online</option>
-                       
-                    </select>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="payment_mode" class="form-label">Payment Mode</label>
+                        <select class="form-control" id="payment_mode" name="payment_mode" required>
+                            <option value="" disabled selected>Select Payment Mode</option>
+                            <option value="cash">Cash</option>
+                            <option value="online">Online</option>
+                        </select>
+                    </div>
                 </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <tbody>
+                        <tr>
+                            <td>Grand Total :</td>
+                            <td><span id="grandTotal">₹0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Discount :</td>
+                            <td>- <span id="DiscountTotal">₹0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Coupon :</td>
+                            <td>- <span id="CouponTotal">₹0.00</span></td>
+                        </tr>
+                        <tr>
+                            <th>Total :</th>
+                            <th><span id="cartTotal">₹0.00</span></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-                            </form>
-
-                            <div class="table-responsive">
-                                <table class="table mb-0">
-                                    <tbody>
-                                        <tr>
-                                            <td>Grand Total :</td>
-                                            <td><span id="grandTotal">₹0.00</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discount :</td>
-                                            <td>- <span id="DiscountTotal">₹0.00</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Coupon :</td>
-                                            <td>- <span id="CouponTotal">₹0.00</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Total :</th>
-                                            <th><span id="cartTotal">₹0.00</span></th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -341,7 +341,7 @@ class Invest extends Controller
             $limit = $request->limit ? $request->limit : paginationLimit();
               $status = $request->status ? $request->status : null;
               $search = $request->search ? $request->search : null;
-              $notes = Seller_invoice::where('request_status','open')->first();
+              $notes = Seller_invoice::where('request_status','open')->orderBy('id','desc')->get();
             
             if($search <> null && $request->reset!="Reset"){
               $notes = $notes->where(function($q) use($search){
@@ -354,7 +354,6 @@ class Invest extends Controller
       
             }
       
-              $notes = $notes->paginate($limit)->appends(['limit' => $limit ]);
       
             $this->data['search'] =$search;
             $this->data['deposit_list'] =$notes;
@@ -553,52 +552,8 @@ public function fetchProduct(Request $request)
     }
     
 
-//     public function getProducts(Request $request)
-// {
-//     $user = Auth::user();
-
-//     // Fetch vendor products for the user
-//     $vendorProducts = Vendor_product::where('user_id', $user->id)
-//                                     ->where('activeStatus', 1)
-//                                     ->get();
-
-//     // Extract unique product IDs
-//     $ids = $vendorProducts->pluck('product_id')->unique()->toArray();
-
-//     // Fetch products based on the IDs
-//     $products = Vproduct::whereIn('id', $ids);
-
-//     // Filter products based on balance quantity
-//     $filteredProducts = $products->get()->filter(function ($product) use ($user) {
-//         $maxQuantity = \DB::table('vendor_products')
-//                           ->where('user_id', $user->id)
-//                           ->where('product_id', $product->id)
-//                           ->where('activeStatus', 1)
-//                           ->sum('quantity');
-
-//         $usedQuantity = \DB::table('user_products')
-//                            ->where('user_id', $user->id)
-//                            ->where('product_id', $product->id)
-//                            ->sum('quantity');
-
-//         $balanceQuantity = $maxQuantity - $usedQuantity;
-
-//         return $balanceQuantity > 0;  // Only include products with balance quantity greater than 0
-//     });
-
-//     // Sorting logic based on request parameter
-//     $orderBy = $request->input('orderBy', 'asc'); // Default to ascending order
-//     $sortField = $request->input('sortField', 'productName'); // Default to sorting by productName
-
-//     $filteredProducts = $filteredProducts->sortBy($sortField, SORT_REGULAR, $orderBy === 'desc');
-
-//     $this->data['products'] = $filteredProducts;
-//     $this->data['page'] = 'user.invest.buy_product';
-
-//     return $this->dashboard_layout();
-// }
-
     
 
- 
+
+
 }

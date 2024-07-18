@@ -18,18 +18,7 @@
             <!-- End page title -->
             <div class="row">
                 <div class="col-lg-3">
-                    <!-- <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title mb-4">Filter</h4>
-                            <div>
-                                <h5 class="font-size-14 mb-3">Filter By</h5>
-                                <ul class="list-unstyled product-list">
-                                    <li><a href="#" class="filter-link" data-filter-type="latest"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">Latest Products</span></a></li>
-                                    <li><a href="#" class="filter-link" data-filter-type="oldest"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">Oldest Products</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> -->
+                    
                 </div>
                 <div class="col-lg-9">
                     <div class="row mb-3">
@@ -135,7 +124,8 @@
             }
         });
 
-        
+     
+
         // Function to add product to cart
         function addToCart(productId, button) {
             if (cartItems.indexOf(productId) === -1) {

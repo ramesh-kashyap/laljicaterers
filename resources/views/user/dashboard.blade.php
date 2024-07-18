@@ -76,59 +76,78 @@
 
                   
                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">Latest Transaction</h4>
-                                        <div class="table-responsive">
-                                            <table class="table align-middle table-nowrap mb-0">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                       
-                                                        <th class="align-middle">Order ID</th>
-                                                        <th class="align-middle">Billing Name</th>
-                                                        <th class="align-middle">Date</th>
-                                                    
-                                                       
-                                                        <th class="align-middle">Payment Method</th>
-                                                        <th class="align-middle">View Details</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <?php $cnt = 0; ?>
-                                        @foreach ($transaction_data as $value)                   
-                                        <tr>
-                                           
-                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#{{$value->plan}}</a> </td>
-                                            <td>{{$value->user->email}}</td>
-                                            <td>
-                                                {{date("D, d M Y", strtotime($value->sdate))}}
-                                            </td>
-                                           
-                                           
-                                            <td>
-                                                CASH
-                                            </td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <a href="{{ route('user.view-invoice', ['id'=> Crypt::encrypt($value->id)]) }}" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                                    View Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-
-                                      
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- end table-responsive -->
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Enquiry Reports</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Buy Product</a></li>
+                                <li class="breadcrumb-item active">Product Reports</li>
+                            </ol>
                         </div>
-                        <!-- end row -->
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body" style="overflow-x: auto;">
+                            <table id="datatable" class="table table-bordered  w-100">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                      
+                                        <th>Customer Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>City</th>
+                                        <th>Total Person</th>
+                                        <th>Enquiry Date</th>
+                                        <th>Agent Name</th>
+                                        <th>Status of Enquiry</th>
+                                        <th>Menu Generated Pdf</th>
+                                        <th>Close</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if(is_array($deposit_list) || is_object($deposit_list)){ ?>
+                                        <?php $cnt = 0; ?>
+                                        @foreach($deposit_list as $value)
+                                            <tr>
+                                                <td><?= $cnt += 1?></td>
+                                              
+                                                <td>{{ $value->name }}</td>
+                                                <td>{{ $value->phone }}</td>
+                                                <td>{{ $value->email }}</td>
+                                                <td>{{ $value->city }}</td>
+                                                <td>{{ $value->total_people}}</td>
+                                                <td>{{ $value->sdate }}</td>
+                                                <td>{{ $value->user->name }}</td>
+                                                <td>{{ $value->request_status }}</td>
+                                                <td>
+                                                    <a href="{{ route('user.view-invoice', ['id' => Crypt::encrypt($value->id)]) }}" class="btn btn-primary btn-sm btn-rounded">
+                                                        View Details
+                                                    </a>
+                                                </td>
+                                               
+                                                <td>
+                                                    <form action="{{ route('user.close-request', $value->id) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm btn-rounded">
+                                                            Close
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    <?php }?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->
                     </div>
                     <!-- container-fluid -->
                 </div>

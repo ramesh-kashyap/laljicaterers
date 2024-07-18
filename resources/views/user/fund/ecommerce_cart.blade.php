@@ -21,7 +21,7 @@
             <!-- end page title -->
 
             <div class="row">
-                <div class="col-xl-8">
+                <div class="col-xl-12">
                     <div class="card">
                         <div class="card-body">
 
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4">
+                <div class="col-xl-8">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title mb-3">Order Summary</h4>

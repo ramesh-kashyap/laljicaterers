@@ -118,7 +118,7 @@ Route::post('/close-request/{id}',[App\Http\Controllers\UserPanel\Invest::class,
 
 
 Route::post('/get-products', [App\Http\Controllers\UserPanel\Invest::class, 'fetchProduct'])->name('product.fatch');
-Route::post('/get-product', [App\Http\Controllers\UserPanel\Invest::class, 'getProducts'])->name('get.product');
+// Route::get('/get-product', [App\Http\Controllers\UserPanel\Invest::class, 'getProducts'])->name('get.product');
 
 // end invest
 
