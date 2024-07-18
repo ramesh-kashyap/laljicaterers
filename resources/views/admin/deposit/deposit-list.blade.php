@@ -35,6 +35,9 @@
                                                 <th> Customer Email</th>
                                                 <!--<th>Coupon</th>-->
                                                 <th> Customer Mobile </th>
+                                                <th> Total Person </th>
+                                                <th> Status of Enquiry</th>
+
                                                 <!-- <th>transaction Id</th> -->
                                                 <th>Enquiry Date</th>
                                                 <th>Agent Name</th>
@@ -61,6 +64,9 @@
                                                         <td> {{$value->email}}</td>
                                                         <!--<td> {{currency()}}  {{$value->ProductCoupon}}</td>-->
                                                         <td>  {{$value->phone}}</td>
+                                                        <td>  {{$value->total_people}}</td>
+                                                        <td>  {{$value->request_status}}</td>
+
                                                         <!-- <td>  {{$value->transaction_id}}</td> -->
                                                         <td>  {{$value->created_at}}</td>
                                                         <td> {{$value->user->name}}</td>

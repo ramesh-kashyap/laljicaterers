@@ -18,7 +18,18 @@
             <!-- End page title -->
             <div class="row">
                 <div class="col-lg-3">
-                    
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Filter</h4>
+                            <div>
+                                <h5 class="font-size-14 mb-3">Filter By</h5>
+                                <ul class="list-unstyled product-list">
+                                    <li><a href="#" class="filter-link" data-filter-type="latest"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">Latest Products</span></a></li>
+                                    <li><a href="#" class="filter-link" data-filter-type="oldest"><i class="mdi mdi-chevron-right me-1"></i> <span class="tablist-name">Oldest Products</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="row mb-3">
@@ -40,7 +51,7 @@
                     </div>
                     <div class="row" id="product-list">
                         @foreach($products as $product)
-                        <div class="col-xl-4 col-sm-6">
+                        <div class="col-xl-4 col-sm-6" data-created-at="{{ $product->created_at }}">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="product-img position-relative">
@@ -51,7 +62,7 @@
                                     <div class="mt-4 text-center">
                                         <h4 class="mb-3 text-truncate"><a href="javascript:void(0);"
                                                 class="text-dark">{{ $product->productName }}</a></h4>
-                                                <h5 class="mb-3 text-truncate"><a href="javascript:void(0);"
+                                        <h5 class="mb-3 text-truncate"><a href="javascript:void(0);"
                                                 class="text-dark">{{ $product->ProductDiscription }}</a></h5>
                                         <div class="text-center">
                                             <button type="button"
@@ -74,6 +85,34 @@
 </div>
 
 <script>
+    document.querySelectorAll('.filter-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            let filterType = this.getAttribute('data-filter-type');
+            sortProducts(filterType);
+        });
+    });
+
+    function sortProducts(order) {
+        let productList = document.getElementById('product-list');
+        let products = Array.from(productList.getElementsByClassName('col-xl-4'));
+
+        products.sort((a, b) => {
+            let dateA = new Date(a.getAttribute('data-created-at'));
+            let dateB = new Date(b.getAttribute('data-created-at'));
+
+            if (order === 'latest') {
+                return dateB - dateA;
+            } else {
+                return dateA - dateB;
+            }
+        });
+
+        // Clear the list and append sorted products
+        productList.innerHTML = '';
+        products.forEach(product => productList.appendChild(product));
+    }
+    
     $(document).ready(function () {
         var cartItems = []; // Array to store product IDs
 
