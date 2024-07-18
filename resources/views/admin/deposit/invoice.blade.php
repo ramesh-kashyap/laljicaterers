@@ -158,6 +158,11 @@
                                     margin: 0
                                 }
 
+                                .content-body{
+                                    padding: 0;
+                                    margin: -180px 0px 0px 0px !important;
+                                }
+
                                 .card {
                                     border: 0
     }

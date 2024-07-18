@@ -236,14 +236,14 @@ span.badge.badge-success {
                             <li>
                                 <a href="{{route('user.vendor_cards')}}" class=" waves-effect">
                                     <i class="bx bx-store"></i>
-                                    <span key="t-ecommerce"> Menu</span>
+                                    <span key="t-ecommerce"> Buy Products</span>
                                 </a>
                   
                             </li>
                             <li>
                                 <a href="{{route('user.buy_products')}}" class=" waves-effect">
                                     <i class="bx bx-store"></i>
-                                    <span key="t-ecommerce"> Buy Products</span>
+                                    <span key="t-ecommerce">Vendor's Menu</span>
                                 </a>
                   
                             </li>
