@@ -310,6 +310,11 @@ public function vendorBilling(Request $request)
             'phone' => 'required|string',
             'address' => 'required|string',
             'payment_mode' => 'required|string',
+            'no_breakfast' => 'required',
+            'no_lunch' => 'required',
+            'no_dinner' => 'required',
+            'event_date' => 'required',
+            'total_people' => 'required',
         ]);
 
         if ($validation->fails()) {
@@ -323,6 +328,17 @@ public function vendorBilling(Request $request)
         $name = $request->input('name');
         $email = $request->input('email');
         $phone = $request->input('phone');
+        $no_lunch = $request->input('no_lunch');
+        $no_breakfast = $request->input('no_breakfast');
+        $no_dinner = $request->input('no_dinner');
+        $event_date = $request->input('event_date');
+        $total_people = $request->input('total_people');
+        $additional_inquiry = $request->input('additional_inquiry');
+
+
+
+
+
         $address = $request->input('address');
         $payment_mode = $request->input('payment_mode');
 
@@ -344,6 +360,11 @@ public function vendorBilling(Request $request)
             'email' => $email,
             'phone' => $phone,
             'address' => $address,
+            'no_lunch' => $no_lunch,
+            'no_breakfast' => $no_breakfast,
+            'no_dinner' => $no_dinner,
+            'event_date' => $event_date,
+            'additional_inquiry' => $additional_inquiry,
             'grandTotal' => $totalQuantity,
             'status' => 'Pending',
             'created_at' => now(),
