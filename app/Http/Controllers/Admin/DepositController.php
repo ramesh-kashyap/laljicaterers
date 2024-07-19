@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\Investment;
 use App\Models\Seller_invoice;
+use App\Models\VendorBilling;
 
 use App\Models\GeneralSetting;
 
@@ -102,6 +103,40 @@ class DepositController extends Controller
     }
 
 
+    public function vendor_billing(Request $request)
+    {
+        $limit = $request->limit ? $request->limit : paginationLimit();
+        $status = $request->status ? $request->status : null;
+        $search = $request->search ? $request->search : null;
+        $notes = VendorBilling::orderBy('id', 'DESC');
+
+        if($search <> null && $request->reset!="Reset"){
+            $notes = $notes->where(function($q) use($search){
+                $q->Where('user_id_fk', 'LIKE', '%' . $search . '%')          
+                ->orWhere('transaction_id', 'LIKE', '%' . $search . '%')
+                ->orWhere('created_at ', 'LIKE', '%' . $search . '%')
+                ->orWhere('name', 'LIKE', '%' . $search . '%')         
+                ->orWhere('email', 'LIKE', '%' . $search . '%');
+            });
+
+          }
+    $notes = $notes->paginate($limit)
+        ->appends([
+            'limit' => $limit
+        ]);
+
+        $this->data['product_list'] =  $notes;
+        $this->data['search'] = $search;
+        $this->data['page'] = 'admin.deposit.vendor_billing';
+        return $this->admin_dashboard();
+    }
+
+
+
+
+     
+
+
 
     public function Sellerinvoice(Request $request)
     {
@@ -195,6 +230,25 @@ class DepositController extends Controller
    return $this->admin_dashboard();
 
   }
+
+
+
+  public function view_vendor_invoice($id)
+  {
+
+  try {
+      $id = Crypt::decrypt($id);
+      } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+      return back()->withErrors(array('Invalid User!'));
+  }
+
+  $investment = VendorBilling::where('id',$id)->first();
+
+  $this->data['investment'] =  $investment;
+  $this->data['page'] = 'admin.deposit.view_vendor_invoice';
+  return $this->admin_dashboard();
+
+ }
 
 
 

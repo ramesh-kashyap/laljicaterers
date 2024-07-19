@@ -233,6 +233,10 @@ display: none;
 
                         </ul>
                     </li>
+                        
+
+
+                  
 
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-045-heart"></i>
@@ -281,6 +285,7 @@ display: none;
                     <ul aria-expanded="false">
                         <li><a href="{{ route('admin.product-request') }}">Vender Request</a></li>
                         <li><a href="{{route('admin.sellerProduct')}}">Vender Report</a></li>
+                        <li><a href="{{ route('admin.vendor_billing') }}">Billing Report</a></li>
                         <!--<li><a href="{{route('admin.billing-product')}}">Billing Manual</a></li>-->
                         <!-- <li><a href="{{route('admin.agent_report')}}">Agent Report</a></li> -->
                         

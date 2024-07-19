@@ -210,9 +210,11 @@ Route::group(['middleware' => ['admin']], function ()
  
  Route::get('/deposit-list', [App\Http\Controllers\Admin\DepositController::class, 'deposit_list'])->name('admin.deposit-list');
  Route::get('/Sellerinvoice', [App\Http\Controllers\Admin\DepositController::class, 'Sellerinvoice'])->name('admin.Sellerinvoice');
+ Route::get('/vendor_billing', [App\Http\Controllers\Admin\DepositController::class, 'vendor_billing'])->name('admin.vendor_billing');
  
  Route::get('deposit_request_done', [App\Http\Controllers\Admin\DepositController::class, 'deposit_request_done'])->name('admin.deposit_request_done');
  Route::get('view-invoice/{id}', [App\Http\Controllers\Admin\DepositController::class, 'view_invoice'])->name('admin.view-invoice');
+ Route::get('view_vendor_invoice/{id}', [App\Http\Controllers\Admin\DepositController::class, 'view_vendor_invoice'])->name('admin.view_vendor_invoice');
  Route::get('view-seller-invoice/{id}', [App\Http\Controllers\Admin\DepositController::class, 'view_seller_invoice'])->name('admin.view-seller-invoice');
  
 // end DepositManagmentController
